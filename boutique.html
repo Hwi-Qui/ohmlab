@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boutique — OhmLab</title>
+    <!-- Open Graph / WhatsApp / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohmlab-hwi-qen.vercel.app/boutique.html" />
+    <meta property="og:title" content="Boutique — OhmLab | Composants Arduino & Électronique" />
+    <meta property="og:description" content="Tous les composants Arduino, capteurs, modules et kits maker disponibles dans la boutique OhmLab." />
+    <meta property="og:image" content="https://ohmlab-hwi-qen.vercel.app/assets/arduino-uno.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="800" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://ohmlab-hwi-qen.vercel.app/assets/arduino-uno.jpg" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0A6CFF;--blue-deep:#042A80;--blue-100:#EBF2FF;
+  --orange:#FF6A00;--orange-100:#FFF0E6;
+  --ink:#0B1340;--ink-2:#374151;--muted:#6B7280;
+  --bg:#F8FAFF;--surface:#FFFFFF;--line:#E5E8F0;
+  --r-sm:10px;--r-md:16px;--r-lg:24px;
+  --sh-sm:0 2px 12px rgba(4,42,120,.07);
+  --sh-md:0 8px 28px rgba(4,42,120,.11);
+  --sh-lg:0 20px 56px rgba(4,42,120,.16);
+  --nav-h:68px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;padding-top:var(--nav-h)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+svg{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.ic{width:20px;height:20px;flex-shrink:0}
+.ic.sm{width:16px;height:16px}
+.ic.lg{width:26px;height:26px}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);z-index:100;display:flex;align-items:center;padding:0 24px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.nav-logo .ic{width:28px;height:28px;color:var(--blue)}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2px;margin-left:auto}
+.nav-links a{padding:8px 13px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-2);transition:.2s}
+.nav-links a:hover{background:var(--blue-100);color:var(--blue)}
+.nav-links a.active{color:var(--blue);background:var(--blue-100)}
+@media(max-width:680px){.nav-links{display:none}}
+.nav-cart-btn{position:relative;width:40px;height:40px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+.nav-cart-btn:hover{background:var(--blue-deep)}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--orange);color:#fff;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #fff;display:none}
+.cart-count.show{display:flex}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ===== HERO BOUTIQUE ===== */
+.b-hero{background:linear-gradient(135deg,var(--blue-deep) 0%,var(--blue) 100%);padding:40px 24px 32px;text-align:center;color:#fff}
+.b-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;margin-bottom:8px}
+.b-hero p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:24px}
+/* Barre de recherche hero */
+.b-search-wrap{max-width:560px;margin:0 auto;position:relative;width:100%}
+.b-search{width:100%;height:50px;border-radius:50px;border:none;padding:0 50px 0 20px;font-size:15px;font-weight:500;color:var(--ink);outline:none;box-shadow:var(--sh-lg)}
+.b-search:focus{box-shadow:0 0 0 3px rgba(10,108,255,.35),var(--sh-lg)}
+.b-search-ico{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.b-search-clear{position:absolute;right:42px;top:50%;transform:translateY(-50%);color:var(--muted);width:20px;height:20px;border-radius:50%;display:none;align-items:center;justify-content:center;background:var(--line)}
+.b-search-clear.show{display:flex}
+
+/* ===== LAYOUT ===== */
+.b-layout{max-width:1280px;margin:0 auto;padding:28px 24px 80px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
+@media(max-width:1100px){
+  .b-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+}
+@media(max-width:860px){
+  .b-layout{grid-template-columns:1fr;padding:20px 16px 60px}
+  .b-sidebar{position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;z-index:90;border-radius:0;overflow-y:auto;transform:translateX(-100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:300px;box-shadow:var(--sh-lg)}
+  .b-sidebar.open{transform:translateX(0)}
+  .b-sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:89;display:none}
+  .b-sidebar-overlay.show{display:block}
+  .b-filter-toggle{display:flex}
+  .b-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+}
+
+/* ===== SIDEBAR FILTRES ===== */
+.b-sidebar{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--line);padding:22px;position:sticky;top:calc(var(--nav-h) + 16px)}
+.b-sidebar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.b-sidebar-head h3{font-size:15px;font-weight:700}
+.b-reset{font-size:12px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px}
+.b-reset:hover{background:var(--blue-100)}
+.b-filter-group{margin-bottom:20px}
+.b-filter-group:last-child{margin-bottom:0}
+.b-filter-label{font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:block}
+.b-filter-btns{display:flex;flex-direction:column;gap:4px}
+.b-filter-btn{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--ink-2);transition:.15s;border:1.5px solid transparent;text-align:left;width:100%}
+.b-filter-btn:hover{background:var(--blue-100);color:var(--blue)}
+.b-filter-btn.active{background:var(--blue-100);color:var(--blue);border-color:rgba(10,108,255,.2);font-weight:700}
+.b-filter-btn .b-count{font-size:11px;font-weight:700;color:var(--muted);background:var(--line);padding:2px 7px;border-radius:99px}
+.b-filter-btn.active .b-count{background:rgba(10,108,255,.15);color:var(--blue)}
+/* Prix range */
+.b-price-range{display:flex;flex-direction:column;gap:10px}
+.b-price-vals{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-weight:600}
+.b-range{width:100%;accent-color:var(--blue);cursor:pointer}
+/* Badges */
+.b-badge-filters{display:flex;flex-wrap:wrap;gap:6px}
+.b-badge-filter{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;color:var(--muted);border:1.5px solid var(--line);background:var(--surface);transition:.15s;cursor:pointer}
+.b-badge-filter:hover{border-color:var(--blue);color:var(--blue)}
+.b-badge-filter.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* Mobile filtres toggle */
+.b-filter-toggle{display:none;width:100%;padding:12px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);font-size:14px;font-weight:700;color:var(--ink);gap:8px;align-items:center;margin-bottom:16px}
+
+
+/* ===== CONTENU PRINCIPAL ===== */
+.b-main{}
+.b-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.b-results{font-size:14px;color:var(--muted);font-weight:600}
+.b-results b{color:var(--ink)}
+.b-toolbar-right{display:flex;align-items:center;gap:10px}
+/* Tri */
+.b-sort{padding:9px 14px;border-radius:var(--r-sm);border:1.5px solid var(--line);font-size:13.5px;font-weight:600;color:var(--ink);background:var(--surface);cursor:pointer;outline:none;transition:.15s}
+.b-sort:focus{border-color:var(--blue)}
+/* Vue grille/liste */
+.b-view-btns{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.b-view-btn{padding:7px 10px;color:var(--muted);transition:.15s}
+.b-view-btn.active{background:var(--blue);color:#fff}
+
+/* Tags actifs */
+.b-active-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.b-tag{display:flex;align-items:center;gap:6px;padding:5px 12px;background:var(--blue-100);color:var(--blue);border-radius:99px;font-size:12.5px;font-weight:700}
+.b-tag button{color:var(--blue);width:14px;height:14px;border-radius:50%;background:rgba(10,108,255,.2);display:flex;align-items:center;justify-content:center;transition:.15s;padding:0}
+.b-tag button:hover{background:var(--blue);color:#fff}
+
+/* ===== GRILLE PRODUITS ===== */
+.b-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.b-grid.list-view{grid-template-columns:1fr}
+
+/* Carte produit */
+.b-card{background:var(--surface);border-radius:var(--r-lg);border:1.5px solid var(--line);overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column;position:relative}
+.b-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:rgba(10,108,255,.2)}
+.b-card-img{position:relative;background:#F0F4FF;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.b-card-img img{width:100%;height:100%;object-fit:contain;padding:12px;transition:transform .3s}
+.b-card:hover .b-card-img img{transform:scale(1.06)}
+.b-card-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.04em}
+.bg-promo{background:var(--orange);color:#fff}
+.bg-new{background:#10B981;color:#fff}
+.bg-best{background:var(--blue);color:#fff}
+.bg-kit{background:#7C3AED;color:#fff}
+.b-fav{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.2s;box-shadow:var(--sh-sm)}
+.b-fav:hover,.b-fav.active{color:#EF4444;background:#fff}
+.b-fav.active svg{fill:#EF4444}
+.b-card-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:6px}
+.b-card-cat{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase}
+.b-card-name{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.3}
+.b-card-desc{font-size:12.5px;color:var(--muted);line-height:1.5;flex:1}
+.b-card-foot{padding:12px 16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.b-card-price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.b-card-price b{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;color:var(--ink)}
+.b-card-price s{font-size:12px;color:var(--muted)}
+.b-add-btn{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+.b-add-btn:hover{background:var(--blue-deep);transform:scale(1.08)}
+.b-add-btn.added{background:#10B981;animation:pop .3s ease}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+/* Vue liste */
+.b-grid.list-view .b-card{flex-direction:row;align-items:stretch}
+.b-grid.list-view .b-card-img{width:140px;flex-shrink:0;aspect-ratio:auto;min-height:120px}
+.b-grid.list-view .b-card-body{flex-direction:column;gap:4px}
+.b-grid.list-view .b-card-foot{border-top:none;border-left:1px solid var(--line);flex-direction:column;justify-content:center;width:120px;flex-shrink:0;gap:12px}
+@media(max-width:540px){
+  .b-hero{padding:28px 16px 24px}
+  .b-hero h1{font-size:22px}
+  .b-hero p{font-size:13px}
+  .b-search{height:44px;font-size:14px}
+  .b-toolbar{flex-direction:column;align-items:flex-start;gap:10px}
+  .b-toolbar-right{width:100%;justify-content:space-between}
+  .b-sort{flex:1}
+  .b-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .b-card-name{font-size:13px}
+  .b-card-desc{display:none}
+  .b-card-price b{font-size:14px}
+  .b-grid.list-view .b-card{flex-direction:column}
+  .b-grid.list-view .b-card-img{width:100%;min-height:140px;aspect-ratio:4/3}
+  .b-grid.list-view .b-card-foot{border-left:none;border-top:1px solid var(--line);flex-direction:row;width:100%}
+  .nav-links{display:none}
+}
+@media(max-width:360px){
+  .b-grid{grid-template-columns:1fr}
+}
+
+/* État vide */
+.b-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+.b-empty svg{width:56px;height:56px;margin:0 auto 16px;opacity:.3}
+.b-empty h3{font-size:18px;color:var(--ink);margin-bottom:8px}
+.b-empty p{font-size:14px;margin-bottom:16px}
+
+/* Loader scroll infini */
+.b-loader{text-align:center;padding:32px;display:none}
+.b-loader.show{display:block}
+.b-loader-dots{display:inline-flex;gap:6px}
+.b-loader-dots span{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:ldot 1.2s ease infinite}
+.b-loader-dots span:nth-child(2){animation-delay:.2s}
+.b-loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes ldot{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.b-end-msg{text-align:center;padding:24px;font-size:14px;color:var(--muted);display:none}
+.b-end-msg.show{display:block}
+
+/* Toast */
+.b-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:30px;font-size:14px;font-weight:600;z-index:300;transition:transform .3s cubic-bezier(.2,.8,.2,1);white-space:nowrap;box-shadow:var(--sh-lg)}
+.b-toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Retour haut */
+.b-back-top{position:fixed;bottom:24px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-md);opacity:0;pointer-events:none;transition:.3s;z-index:50}
+.b-back-top.show{opacity:1;pointer-events:all}
+
+/* ph-wrap */
+.ph-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.ph-wrap img{width:100%;height:100%;object-fit:contain;padding:12px;opacity:0;transition:opacity .4s ease;position:absolute;inset:0}
+.ph-wrap img.loaded{opacity:1}
+.ph-wrap svg.ph-fb{width:100%;height:100%;padding:12px}
+</style>
+</head>
+<body>
+
+<!-- SVG Sprite -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M7 9H4m0 6h3M17 9h3m-3 6h3M9 7V4m6 0v3M9 17v3m6-3v3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+</svg>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg class="ic" viewBox="0 0 24 24"><use href="#i-chip"/></svg>
+    Ohm<span>Lab</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="boutique.html" class="active">Boutique</a>
+    <a href="index.html#deals">Deals</a>
+    <a href="index.html#faq">FAQ</a>
+  </div>
+  <button class="nav-cart-btn" id="nav-cart" title="Panier">
+    <svg class="ic"><use href="#i-cart"/></svg>
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="b-hero">
+  <h1> Boutique OhmLab</h1>
+  <p>Composants, kits, outillage — tout pour vos projets Arduino</p>
+  <div class="b-search-wrap">
+    <input class="b-search" id="b-search" type="search" placeholder="Rechercher un produit, composant…" autocomplete="off">
+    <svg class="ic sm b-search-ico"><use href="#i-search"/></svg>
+    <button class="b-search-clear" id="b-search-clear" title="Effacer">
+      <svg class="ic sm"><use href="#i-x"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="b-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="b-sidebar" id="b-sidebar">
+    <div class="b-sidebar-head">
+      <h3>Filtres</h3>
+      <button class="b-reset" id="b-reset">Tout réinitialiser</button>
+    </div>
+
+    <!-- Catégories -->
+    <div class="b-filter-group">
+      <span class="b-filter-label">Catégorie</span>
+      <div class="b-filter-btns" id="b-cats">
+        <button class="b-filter-btn active" data-cat="tous"><span>Tous les produits</span><span class="b-count" id="cnt-tous">24</span></button>
+        <button class="b-filter-btn" data-cat="cartes"><span>Cartes & modules</span><span class="b-count" id="cnt-cartes">0</span></button>
+        <button class="b-filter-btn" data-cat="kits"><span>Kits complets</span><span class="b-count" id="cnt-kits">0</span></button>
+        <button class="b-filter-btn" data-cat="capteurs"><span>Capteurs</span><span class="b-count" id="cnt-capteurs">0</span></button>
+        <button class="b-filter-btn" data-cat="affichage"><span>Affichage</span><span class="b-count" id="cnt-affichage">0</span></button>
+        <button class="b-filter-btn" data-cat="moteurs"><span>Moteurs & servos</span><span class="b-count" id="cnt-moteurs">0</span></button>
+        <button class="b-filter-btn" data-cat="composants"><span>Composants</span><span class="b-count" id="cnt-composants">0</span></button>
+        <button class="b-filter-btn" data-cat="outillage"><span>Outillage</span><span class="b-count" id="cnt-outillage">0</span></button>
+      </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="b-filter-group">
+      <span class="b-filter-label">Prix max</span>
+      <div class="b-price-range">
+        <div class="b-price-vals">
+          <span>0 FCFA</span>
+          <span id="b-price-val">100 000 FCFA</span>
+        </div>
+        <input type="range" class="b-range" id="b-price-range" min="0" max="100000" step="500" value="100000">
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="b-filter-group">
+      <span class="b-filter-label">Statut</span>
+      <div class="b-badge-filters" id="b-badges">
+        <button class="b-badge-filter" data-badge="promo">Promo</button>
+        <button class="b-badge-filter" data-badge="new">Nouveau</button>
+        <button class="b-badge-filter" data-badge="best">Best-seller</button>
+        <button class="b-badge-filter" data-badge="kit">Kit</button>
+      </div>
+    </div>
+  </aside>
+  <div class="b-sidebar-overlay" id="b-sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <main class="b-main">
+
+    <!-- Mobile toggle -->
+    <button class="b-filter-toggle" id="b-filter-toggle">
+      <svg class="ic"><use href="#i-filter"/></svg>
+      Filtres & catégories
+    </button>
+
+    <!-- Toolbar -->
+    <div class="b-toolbar">
+      <p class="b-results">Affichage de <b id="b-count">0</b> produits</p>
+      <div class="b-toolbar-right">
+        <select class="b-sort" id="b-sort">
+          <option value="def">Par défaut</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+          <option value="new">Nouveautés</option>
+          <option value="promo">Promotions</option>
+          <option value="name">A → Z</option>
+        </select>
+        <div class="b-view-btns">
+          <button class="b-view-btn active" id="btn-grid" title="Vue grille">
+            <svg class="ic sm"><use href="#i-grid"/></svg>
+          </button>
+          <button class="b-view-btn" id="btn-list" title="Vue liste">
+            <svg class="ic sm"><use href="#i-list"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags actifs -->
+    <div class="b-active-tags" id="b-active-tags"></div>
+
+    <!-- Grille -->
+    <div class="b-grid" id="b-grid"></div>
+
+    <!-- Loader -->
+    <div class="b-loader" id="b-loader">
+      <div class="b-loader-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="b-end-msg" id="b-end-msg"> Tous les produits sont affichés</div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="b-toast" id="b-toast"></div>
+
+<!-- Retour haut -->
+<button class="b-back-top" id="b-back-top" title="Haut de page">
+  <svg class="ic"><use href="#i-arrow-up"/></svg>
+</button>
+
+<script>
+// ===== DONNÉES PRODUITS =====
+const PRODUCTS = [
+  {id:'uno',       name:'Carte Arduino Uno R3',             cat:'cartes',     price:16340,  img:'assets/arduino-uno.jpg',  badge:'best', desc:'Le classique incontournable. ATmega328P 16 MHz, 14 pins numériques, 6 analogiques.'},
+  {id:'kit',       name:'Kit Ultimate Uno R3 (mallette)',   cat:'kits',       price:58990,  oldPrice:72090, img:'assets/kit-arduino.jpg', badge:'promo', desc:'60+ pièces dans une mallette rigide. Parfait pour démarrer ou offrir.'},
+  {id:'soudure',   name:'Station soudure 20 pcs + multimètre', cat:'outillage', price:26180, oldPrice:30770, img:'assets/kit-soudure.jpg', badge:'promo', desc:'Fer 50 W, étain 0,8 mm, multimètre numérique et accessoires.'},
+  {id:'relay',     name:'Module 4 relais SRD-12V',          cat:'cartes',     price:8200,   img:'assets/relay.jpg',        badge:'',    desc:'Commandez 230 V ou de fortes charges depuis votre Arduino.'},
+  {id:'hcsr04',    name:'Capteur ultrason HC-SR04',         cat:'capteurs',   price:2560,   img:'assets/hcsr04.jpg',       badge:'best', desc:'Mesure de distance de 2 cm à 400 cm avec une précision de 3 mm.'},
+  {id:'rfid',      name:'Module RFID RC522 + badge NFC',    cat:'capteurs',   price:3870,   img:'assets/rfid.jpg',         badge:'new', desc:'Lecture/écriture RFID 13,56 MHz. Inclut badge et porte-clé.'},
+  {id:'lcd',       name:'Écran LCD 1602 I2C',               cat:'affichage',  price:5840,   img:'assets/lcd.jpg',          badge:'',    desc:'16 colonnes, 2 lignes, rétroéclairage bleu. Interface I2C simple.'},
+  {id:'servo',     name:'Servo moteur SG90',                cat:'moteurs',    price:4265,   img:'assets/servo.jpg',        badge:'',    desc:'Rotation 180°, couple 1,8 kg·cm, léger et compact.'},
+  {id:'bread',     name:'Breadboard 830 pts + jumpers',     cat:'composants', price:5185,   img:'assets/bread.jpg',        badge:'',    desc:'830 trous, rails d\'alimentation doubles. Inclut 65 jumpers assortis.'},
+  {id:'leds',      name:'Pack 30 LEDs assorties',           cat:'composants', price:2952,   img:'assets/leds.jpg',         badge:'new', desc:'10 couleurs × 3 pièces. Rouge, vert, bleu, jaune, blanc, RGB…'},
+  {id:'res',       name:'Kit 100 résistances 1/4W',         cat:'composants', price:3870,   img:'assets/res.jpg',          badge:'',    desc:'10 valeurs × 10 pièces. De 100Ω à 1MΩ. Idéal pour débuter.'},
+  {id:'fan',       name:'Ventilateur 4010 5V',              cat:'cartes',     price:1900,   img:'assets/fan.jpg',          badge:'',    desc:'40×40×10 mm, silencieux, idéal pour refroidir boîtiers et composants.'},
+  {id:'embouts',   name:'Trousse 115 embouts précision',    cat:'outillage',  price:19620,  img:'assets/embouts.jpg',      badge:'new', desc:'115 embouts de précision pour vis électroniques. Coffret rigide.'},
+  {id:'uno2',      name:'Carte Uno R3 (lot de 2)',          cat:'cartes',     price:22890,  img:'assets/arduino-uno.jpg',  badge:'kit', desc:'Deux cartes Arduino Uno R3 officielles. Idéal pour projets multi-boards.'},
+  {id:'hc3',       name:'HC-SR04 (lot de 3)',               cat:'capteurs',   price:5840,   img:'assets/hcsr04.jpg',       badge:'kit', desc:'Trois capteurs ultrasoniques. Parfait pour les robots éviteurs d\'obstacles.'},
+  {id:'servo4',    name:'Servos SG90 (lot de 4)',           cat:'moteurs',    price:11090,  img:'assets/servo.jpg',        badge:'kit', desc:'Quatre servos SG90 pour bras robotique ou projets multi-axes.'},
+  {id:'lcd2',      name:'LCD 1602 I2C (lot de 2)',          cat:'affichage',  price:9120,   img:'assets/lcd.jpg',          badge:'kit', desc:'Deux écrans LCD I2C pour projets avec affichage redondant.'},
+  {id:'relay2',    name:'Module relais 2 canaux',           cat:'cartes',     price:5185,   img:'assets/relay.jpg',        badge:'',    desc:'2 relais 10A/250V avec optocoupleur intégré. Isolation parfaite.'},
+  {id:'dht22',     name:'Capteur DHT22 temp+humidité',      cat:'capteurs',   price:3870,   img:'assets/hcsr04.jpg',       badge:'best', desc:'Température -40 à 80°C, humidité 0-100%. Protocole 1-Wire.'},
+  {id:'mpu',       name:'Module MPU-6050 accéléro+gyro',   cat:'capteurs',   price:3215,   img:'assets/hcsr04.jpg',       badge:'',    desc:'6 axes (3 accel + 3 gyro), communication I2C. Idéal pour drones.'},
+  {id:'oled',      name:'Écran OLED 0,96" SSD1306',         cat:'affichage',  price:5840,   img:'assets/lcd.jpg',          badge:'new', desc:'128×64 pixels, I2C, contraste exceptionnel même en plein soleil.'},
+  {id:'stepper',   name:'Moteur pas-à-pas 28BYJ-48 + ULN2003', cat:'moteurs', price:3870, img:'assets/servo.jpg',         badge:'',    desc:'512 pas/tour, couple suffisant pour petits projets de précision.'},
+  {id:'jumpers',   name:'Kit 120 jumpers male/femelle',     cat:'composants', price:2560,   img:'assets/bread.jpg',        badge:'',    desc:'40 M-M + 40 F-F + 40 M-F, 20 cm, 10 couleurs.'},
+  {id:'capa',      name:'Kit condensateurs 25 valeurs',     cat:'composants', price:3215,   img:'assets/res.jpg',          badge:'',    desc:'De 10pF à 470µF, électrolitiques et céramiques inclus.'},
+];
+
+const BATCH = 8;
+let filtered = [...PRODUCTS];
+let displayed = 0;
+let favorites = JSON.parse(localStorage.getItem('ohm_favs') || '[]');
+let cart = JSON.parse(localStorage.getItem('ohm_cart') || '[]');
+let viewMode = 'grid';
+let activeCat = 'tous';
+let activeBadges = [];
+let maxPrice = 100000;
+let searchQ = '';
+let sortMode = 'def';
+let loading = false;
+
+const money = n => n.toLocaleString('fr-FR') + ' FCFA';
+
+// ===== INIT =====
+function init(){
+  updateCounts();
+  applyFilters();
+  updateCartBadge();
+  setupInfiniteScroll();
+}
+
+// ===== FILTRES =====
+function applyFilters(){
+  filtered = PRODUCTS.filter(p => {
+    const matchCat   = activeCat === 'tous' || p.cat === activeCat;
+    const matchBadge = activeBadges.length === 0 || activeBadges.includes(p.badge);
+    const matchPrice = p.price <= maxPrice;
+    const matchQ     = searchQ === '' || p.name.toLowerCase().includes(searchQ) || p.desc.toLowerCase().includes(searchQ) || p.cat.toLowerCase().includes(searchQ);
+    return matchCat && matchBadge && matchPrice && matchQ;
+  });
+  sortProducts();
+  displayed = 0;
+  document.getElementById('b-grid').innerHTML = '';
+  document.getElementById('b-end-msg').classList.remove('show');
+  loadMore();
+  updateActiveTags();
+  document.getElementById('b-count').textContent = filtered.length;
+}
+
+function sortProducts(){
+  switch(sortMode){
+    case 'price-asc':  filtered.sort((a,b) => a.price - b.price); break;
+    case 'price-desc': filtered.sort((a,b) => b.price - a.price); break;
+    case 'name':       filtered.sort((a,b) => a.name.localeCompare(b.name)); break;
+    case 'new':        filtered.sort((a,b) => (b.badge==='new'?1:0)-(a.badge==='new'?1:0)); break;
+    case 'promo':      filtered.sort((a,b) => (b.badge==='promo'?1:0)-(a.badge==='promo'?1:0)); break;
+    default:           filtered.sort((a,b) => PRODUCTS.indexOf(a)-PRODUCTS.indexOf(b));
+  }
+}
+
+function updateCounts(){
+  const cats = ['cartes','kits','capteurs','affichage','moteurs','composants','outillage'];
+  cats.forEach(c => {
+    const el = document.getElementById('cnt-'+c);
+    if(el) el.textContent = PRODUCTS.filter(p => p.cat === c).length;
+  });
+  document.getElementById('cnt-tous').textContent = PRODUCTS.length;
+}
+
+// ===== SCROLL INFINI =====
+function loadMore(){
+  if(loading) return;
+  const remaining = filtered.slice(displayed, displayed + BATCH);
+  if(remaining.length === 0){
+    document.getElementById('b-loader').classList.remove('show');
+    if(displayed > 0) document.getElementById('b-end-msg').classList.add('show');
+    return;
+  }
+  loading = true;
+  document.getElementById('b-loader').classList.add('show');
+  setTimeout(() => {
+    remaining.forEach(p => {
+      document.getElementById('b-grid').appendChild(buildCard(p));
+    });
+    displayed += remaining.length;
+    document.getElementById('b-loader').classList.remove('show');
+    loadImages();
+    loading = false;
+    if(displayed >= filtered.length){
+      document.getElementById('b-end-msg').classList.add('show');
+    }
+  }, 350);
+}
+
+function setupInfiniteScroll(){
+  const sentinel = document.createElement('div');
+  sentinel.id = 'b-sentinel';
+  sentinel.style.height = '20px';
+  document.getElementById('b-end-msg').after(sentinel);
+  const obs = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting) loadMore();
+  }, {rootMargin:'200px'});
+  obs.observe(sentinel);
+}
+
+// ===== BUILD CARD =====
+function buildCard(p){
+  const isFav = favorites.includes(p.id);
+  const badgeHTML = p.badge ? `<span class="b-card-badge bg-${p.badge}">${
+    p.badge==='promo'?'Promo':p.badge==='new'?'Nouveau':p.badge==='best'?'Best-seller':'Kit'
+  }</span>` : '';
+  const oldPriceHTML = p.oldPrice ? `<s>${money(p.oldPrice)}</s>` : '';
+  const el = document.createElement('article');
+  el.className = 'b-card';
+  el.dataset.id = p.id;
+  el.innerHTML = `
+    <div class="b-card-img">
+      <div class="ph-wrap">
+        <img data-src="${p.img}" alt="${p.name}">
+        <svg class="ph-fb" viewBox="0 0 220 150" style="width:100%;height:100%;opacity:.15">
+          <rect x="10%" y="10%" width="80%" height="80%" rx="8" fill="currentColor"/>
+        </svg>
+      </div>
+      ${badgeHTML}
+      <button class="b-fav${isFav?' active':''}" data-id="${p.id}" title="Favoris">
+        <svg class="ic sm"><use href="#i-heart"/></svg>
+      </button>
+    </div>
+    <div class="b-card-body">
+      <span class="b-card-cat">${catLabel(p.cat)}</span>
+      <h3 class="b-card-name">${p.name}</h3>
+      <p class="b-card-desc">${p.desc}</p>
+    </div>
+    <div class="b-card-foot">
+      <div class="b-card-price">
+        <b>${money(p.price)}</b>${oldPriceHTML}
+      </div>
+      <button class="b-add-btn" data-id="${p.id}" title="Ajouter au panier">
+        <svg class="ic sm"><use href="#i-cart"/></svg>
+      </button>
+    </div>`;
+  // Favori
+  el.querySelector('.b-fav').addEventListener('click', () => toggleFav(p.id, el.querySelector('.b-fav')));
+  // Panier
+  el.querySelector('.b-add-btn').addEventListener('click', () => addToCart(p, el.querySelector('.b-add-btn')));
+  return el;
+}
+
+function catLabel(c){
+  return {cartes:'Cartes & modules',kits:'Kits complets',capteurs:'Capteurs',affichage:'Affichage',moteurs:'Moteurs',composants:'Composants',outillage:'Outillage'}[c] || c;
+}
+
+// ===== IMAGES LAZY =====
+const imgObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const img = e.target;
+    img.src = img.dataset.src;
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+      const fb = img.closest('.ph-wrap')?.querySelector('.ph-fb');
+      if(fb) fb.remove();
+    }, {once:true});
+    img.addEventListener('error', () => img.remove(), {once:true});
+    imgObs.unobserve(img);
+  });
+}, {rootMargin:'200px'});
+
+function loadImages(){
+  document.querySelectorAll('[data-src]').forEach(img => imgObs.observe(img));
+}
+
+// ===== FAVORIS =====
+function toggleFav(id, btn){
+  const idx = favorites.indexOf(id);
+  if(idx === -1){
+    favorites.push(id);
+    btn.classList.add('active');
+    toast(' Ajouté aux favoris');
+  } else {
+    favorites.splice(idx,1);
+    btn.classList.remove('active');
+    toast(' Retiré des favoris');
+  }
+  localStorage.setItem('ohm_favs', JSON.stringify(favorites));
+}
+
+// ===== PANIER =====
+function addToCart(p, btn){
+  cart.push({id:p.id, name:p.name, price:p.price});
+  localStorage.setItem('ohm_cart', JSON.stringify(cart));
+  btn.classList.add('added');
+  btn.innerHTML = '<svg class="ic sm"><use href="#i-check"/></svg>';
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.innerHTML = '<svg class="ic sm"><use href="#i-cart"/></svg>';
+  }, 1500);
+  toast(` ${p.name} ajouté au panier`);
+  updateCartBadge();
+}
+function updateCartBadge(){
+  const el = document.getElementById('cart-count');
+  el.textContent = cart.length;
+  el.classList.toggle('show', cart.length > 0);
+}
+
+// ===== TOAST =====
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById('b-toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+// ===== TAGS ACTIFS =====
+function updateActiveTags(){
+  const wrap = document.getElementById('b-active-tags');
+  wrap.innerHTML = '';
+  if(activeCat !== 'tous') addTag(catLabel(activeCat), () => { activeCat='tous'; document.querySelector('[data-cat="tous"]').click(); });
+  activeBadges.forEach(b => addTag(b==='promo'?'Promo':b==='new'?'Nouveau':b==='best'?'Best-seller':'Kit', () => {
+    activeBadges = activeBadges.filter(x => x !== b);
+    document.querySelectorAll(`[data-badge="${b}"]`).forEach(el => el.classList.remove('active'));
+    applyFilters();
+  }));
+  if(maxPrice < 100000) addTag(`≤ ${money(maxPrice)}`, () => {
+    maxPrice = 100000;
+    document.getElementById('b-price-range').value = 100000;
+    document.getElementById('b-price-val').textContent = '100 000 FCFA';
+    applyFilters();
+  });
+  if(searchQ) addTag(`"${searchQ}"`, () => {
+    searchQ = '';
+    document.getElementById('b-search').value = '';
+    document.getElementById('b-search-clear').classList.remove('show');
+    applyFilters();
+  });
+}
+function addTag(label, onRemove){
+  const wrap = document.getElementById('b-active-tags');
+  const t = document.createElement('span');
+  t.className = 'b-tag';
+  t.innerHTML = `${label}<button title="Supprimer"><svg class="ic sm"><use href="#i-x"/></svg></button>`;
+  t.querySelector('button').addEventListener('click', onRemove);
+  wrap.appendChild(t);
+}
+
+// ===== ÉVÉNEMENTS =====
+// Catégories
+document.getElementById('b-cats').addEventListener('click', e => {
+  const btn = e.target.closest('[data-cat]');
+  if(!btn) return;
+  document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  applyFilters();
+  closeSidebar();
+});
+
+// Prix
+document.getElementById('b-price-range').addEventListener('input', e => {
+  maxPrice = +e.target.value;
+  document.getElementById('b-price-val').textContent = maxPrice.toLocaleString('fr-FR') + ' FCFA';
+  applyFilters();
+});
+
+// Badges
+document.getElementById('b-badges').addEventListener('click', e => {
+  const btn = e.target.closest('[data-badge]');
+  if(!btn) return;
+  const b = btn.dataset.badge;
+  btn.classList.toggle('active');
+  activeBadges = [...document.querySelectorAll('[data-badge].active')].map(el => el.dataset.badge);
+  applyFilters();
+  closeSidebar();
+});
+
+// Recherche
+let searchTimer;
+document.getElementById('b-search').addEventListener('input', e => {
+  searchQ = e.target.value.trim().toLowerCase();
+  document.getElementById('b-search-clear').classList.toggle('show', searchQ !== '');
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(applyFilters, 280);
+});
+document.getElementById('b-search-clear').addEventListener('click', () => {
+  searchQ = '';
+  document.getElementById('b-search').value = '';
+  document.getElementById('b-search-clear').classList.remove('show');
+  document.getElementById('b-search').focus();
+  applyFilters();
+});
+
+// Tri
+document.getElementById('b-sort').addEventListener('change', e => {
+  sortMode = e.target.value;
+  applyFilters();
+});
+
+// Vue grille/liste
+document.getElementById('btn-grid').addEventListener('click', () => {
+  viewMode = 'grid';
+  document.getElementById('b-grid').classList.remove('list-view');
+  document.getElementById('btn-grid').classList.add('active');
+  document.getElementById('btn-list').classList.remove('active');
+});
+document.getElementById('btn-list').addEventListener('click', () => {
+  viewMode = 'list';
+  document.getElementById('b-grid').classList.add('list-view');
+  document.getElementById('btn-list').classList.add('active');
+  document.getElementById('btn-grid').classList.remove('active');
+});
+
+// Reset
+document.getElementById('b-reset').addEventListener('click', () => {
+  activeCat = 'tous'; activeBadges = []; maxPrice = 100000; searchQ = ''; sortMode = 'def';
+  document.getElementById('b-search').value = '';
+  document.getElementById('b-search-clear').classList.remove('show');
+  document.getElementById('b-price-range').value = 100000;
+  document.getElementById('b-price-val').textContent = '100 000 FCFA';
+  document.getElementById('b-sort').value = 'def';
+  document.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('active', b.dataset.cat==='tous'));
+  document.querySelectorAll('[data-badge]').forEach(b => b.classList.remove('active'));
+  applyFilters();
+});
+
+// Mobile sidebar
+function closeSidebar(){
+  document.getElementById('b-sidebar').classList.remove('open');
+  document.getElementById('b-sidebar-overlay').classList.remove('show');
+}
+document.getElementById('b-filter-toggle').addEventListener('click', () => {
+  document.getElementById('b-sidebar').classList.add('open');
+  document.getElementById('b-sidebar-overlay').classList.add('show');
+});
+document.getElementById('b-sidebar-overlay').addEventListener('click', closeSidebar);
+
+// Retour haut
+window.addEventListener('scroll', () => {
+  document.getElementById('b-back-top').classList.toggle('show', window.scrollY > 400);
+}, {passive:true});
+document.getElementById('b-back-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+// Panier → retour accueil
+document.getElementById('nav-cart').addEventListener('click', () => {
+  window.location.href = 'index.html#panier';
+});
+
+init();
+</script>
+</body>
+</html>

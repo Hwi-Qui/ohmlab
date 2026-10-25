@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OhmLab — Électronique, Arduino & Outillage maker</title>
+    <!-- Open Graph / WhatsApp / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ohmlab-hwi-qen.vercel.app" />
+    <meta property="og:title" content="OhmLab — Électronique, Arduino & Outillage maker" />
+    <meta property="og:description" content="Découvrez OhmLab : kits Arduino, composants électroniques et outillage maker. Livraison rapide, qualité garantie." />
+    <meta property="og:image" content="https://ohmlab-hwi-qen.vercel.app/assets/kit-arduino.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="800" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://ohmlab-hwi-qen.vercel.app/assets/kit-arduino.jpg" />
+<meta name="description" content="Boutique spécialisée Arduino, capteurs, composants et outillage de précision. Livraison 48h, support maker, tutoriels inclus.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='4' y='4' width='16' height='16' rx='4' fill='%230A6CFF'/><rect x='9' y='9' width='6' height='6' rx='1.5' fill='%23FF6A00'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ========== PALETTE & ÉCHELLES ========== */
+:root{
+  --blue:#0A6CFF; --blue-d:#0050E0; --blue-deep:#003ECF; --blue-100:#E6F0FF; --blue-50:#F3F8FF;
+  --orange:#FF6A00; --orange-d:#E05A00; --orange-100:#FFEDE1;
+  --white:#FFFFFF; --bg:#F6F9FF; --line:#E4ECF7;
+  --ink:#0A2540; --ink-2:#5A6B85; --deep:#04204F;
+  --blk:#20242B; --silv:#C7D3E3; --silv-d:#93A3B8;
+  --ring:0 0 0 4px rgba(10,108,255,.16);
+  --sh-sm:0 2px 12px rgba(4,42,120,.07);
+  --sh-md:0 14px 38px rgba(4,42,120,.12);
+  --sh-lg:0 28px 64px rgba(4,42,120,.18);
+  --r-sm:12px; --r-md:18px; --r-lg:28px;
+  --sec:110px; --sec-sm:80px;
+  --fs-h1:clamp(38px,6vw,66px); --fs-h2:clamp(28px,4vw,46px); --fs-h3:clamp(20px,2.4vw,26px);
+  --fs-lead:clamp(16px,1.6vw,18.5px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.65;padding-top:104px;font-feature-settings:"cv02","cv03"}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+img,svg{display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input{font-family:inherit}
+::selection{background:var(--blue);color:#fff}
+section{scroll-margin-top:110px;padding:var(--sec) 0}
+.container{width:min(1180px,92%);margin-inline:auto}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.sm{width:17px;height:17px}.ic.lg{width:28px;height:28px}
+::-webkit-scrollbar{width:10px;height:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#B9C9E4;border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:var(--blue)}
+
+/* ========== PRELOADER ========== */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:500;display:grid;place-items:center;gap:0;transition:opacity .5s,visibility .5s}
+#loader.done{opacity:0;visibility:hidden}
+.ld-in{display:grid;justify-items:center;gap:16px}
+.ld-mark{width:70px;height:70px;border-radius:20px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));display:grid;place-items:center;color:#fff;animation:ldPulse 1.1s ease-in-out infinite;box-shadow:0 18px 40px rgba(10,108,255,.4)}
+.ld-mark .ic{width:36px;height:36px}
+@keyframes ldPulse{50%{transform:scale(.9) rotate(-6deg)}}
+.ld-bar{width:150px;height:5px;border-radius:99px;background:var(--blue-100);overflow:hidden}
+.ld-bar i{display:block;height:100%;width:40%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--orange));animation:ldSlide 1s ease-in-out infinite}
+@keyframes ldSlide{0%{transform:translateX(-100%)}100%{transform:translateX(360%)}}
+.ld-in span{font-family:'Space Grotesk';font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--ink-2)}
+
+/* ========== UTILITAIRES ========== */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;transition:.3s cubic-bezier(.2,.8,.2,1)}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 28px rgba(10,108,255,.38)}
+.btn-primary:hover{background:var(--blue-d);transform:translateY(-3px);box-shadow:0 18px 38px rgba(10,108,255,.46)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 12px 28px rgba(255,106,0,.38)}
+.btn-orange:hover{background:var(--orange-d);transform:translateY(-3px)}
+.btn-ghost{background:var(--white);color:var(--ink);border:1.5px solid var(--line);box-shadow:var(--sh-sm)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px)}
+.badge-label{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.sec-head{max-width:700px;margin-bottom:56px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:var(--fs-h2);margin:16px 0 14px}
+.sec-head p{color:var(--ink-2);font-size:var(--fs-lead)}
+.grad{background:linear-gradient(92deg,var(--blue) 15%,var(--orange) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* cadre image robuste (ratio fixe, img + svg superposés) */
+.ph-wrap{position:relative;aspect-ratio:22/15;width:100%}
+.ph-wrap img,.ph-wrap .ph-fb{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.ph-wrap img{z-index:2;opacity:0;transition:opacity .5s}
+.ph-wrap img.loaded{opacity:1}
+.ph-fb{z-index:1}
+
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--orange));z-index:300;border-radius:0 3px 3px 0}
+
+/* ========== NAVBAR FLOTTANTE ========== */
+.nav-wrap{position:fixed;top:16px;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:0 4%;pointer-events:none}
+nav{pointer-events:auto;width:min(1180px,100%);display:flex;align-items:center;gap:18px;height:68px;padding:0 20px;border-radius:24px;
+  background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.95);box-shadow:0 14px 44px rgba(4,42,120,.14);transition:.35s cubic-bezier(.2,.8,.2,1)}
+nav.scrolled{background:rgba(255,255,255,.9);height:60px;box-shadow:0 18px 50px rgba(4,42,120,.2)}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.02em}
+.logo-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(10,108,255,.4)}
+.logo-mark .ic{width:23px;height:23px}
+.logo em{font-style:normal;color:var(--orange)}
+.nav-links{display:flex;gap:2px;margin-left:auto}
+.nav-links a{padding:9px 14px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink-2);transition:.2s;position:relative}
+.nav-links a:hover{color:var(--blue);background:var(--blue-100)}
+.nav-links a.active{color:var(--blue)}
+.nav-links a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:3px;border-radius:3px;background:var(--orange)}
+.nav-search{display:flex;align-items:center;gap:9px;background:var(--white);border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;width:190px;transition:.25s}
+.nav-search:focus-within{border-color:var(--blue);box-shadow:var(--ring);width:230px}
+.nav-search input{border:none;outline:none;background:none;font-size:14px;width:100%;color:var(--ink)}
+.nav-search .ic{width:17px;height:17px;color:var(--ink-2)}
+.nav-acts{display:flex;align-items:center;gap:6px}
+.icon-btn{position:relative;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:var(--ink-2);transition:.2s}
+.icon-btn:hover{background:var(--blue-100);color:var(--blue)}
+.count-badge{position:absolute;top:2px;right:2px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-size:10.5px;font-weight:800;display:grid;place-items:center;transform:scale(0);transition:.25s cubic-bezier(.34,1.56,.64,1)}
+.count-badge.show{transform:scale(1)}
+.count-badge.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.35)}}
+.burger{display:none}
+.mobile-menu{position:fixed;top:92px;left:4%;right:4%;z-index:99;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:22px;box-shadow:var(--sh-lg);padding:16px;display:none;flex-direction:column;gap:4px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:13px 14px;border-radius:13px;font-weight:700;color:var(--ink-2)}
+.mobile-menu a:hover{background:var(--blue-100);color:var(--blue)}
+.mobile-menu .nav-search{width:100%;margin-top:6px}
+
+/* ========== HERO ========== */
+.hero{position:relative;padding:46px 0 90px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(10,108,255,.14) 1px,transparent 0);background-size:26px 26px;mask-image:radial-gradient(ellipse 75% 70% at 60% 40%,#000 30%,transparent 75%)}
+.hero::after{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.13),transparent 62%);left:var(--mx,72%);top:var(--my,34%);transform:translate(-50%,-50%);pointer-events:none}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none}
+.g1{width:540px;height:540px;background:var(--blue-100);top:-150px;right:-90px}
+.g2{width:400px;height:400px;background:var(--orange-100);bottom:-130px;left:-110px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center;position:relative}
+.hero-badge{background:#fff;border:1.5px solid var(--line);color:var(--blue);box-shadow:var(--sh-sm)}
+.hero h1{font-size:var(--fs-h1);letter-spacing:-.04em;margin:22px 0 20px}
+.rotowrap{display:block;font-size:.72em;margin-top:6px}
+#rotoword{background:linear-gradient(92deg,var(--blue),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+#rotoword::after{content:"";display:inline-block;width:3px;height:.85em;margin-left:4px;background:var(--orange);vertical-align:-.08em;animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.hero p.lead{font-size:var(--fs-lead);color:var(--ink-2);max-width:520px;margin-bottom:32px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:32px;margin-top:44px;flex-wrap:wrap}
+.hstat{display:flex;align-items:center;gap:12px}
+.hstat .ic{color:var(--orange);width:24px;height:24px}
+.hstat b{font-family:'Space Grotesk';font-size:19px;display:block;line-height:1.1}
+.hstat small{color:var(--ink-2);font-size:12.5px}
+.hero-vis{position:relative;min-height:560px}
+.orbit{position:absolute;inset:5%;border:2px dashed rgba(10,108,255,.25);border-radius:50%;animation:spin 46s linear infinite}
+.orbit.o2{inset:18%;border-color:rgba(255,106,0,.3);animation-duration:34s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hv-main{position:absolute;top:50%;left:50%;width:min(430px,86%);transform:translate(-50%,-50%);z-index:3}
+.hv-main .ph-wrap img{filter:drop-shadow(0 34px 44px rgba(0,62,207,.35))}
+.hv-glow{position:absolute;inset:8% -6% -4% -6%;background:radial-gradient(ellipse at center,rgba(10,108,255,.28),transparent 65%);z-index:1;border-radius:50%}
+.spec-tag{position:absolute;z-index:5;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--blue);box-shadow:var(--sh-md);display:inline-flex;align-items:center;gap:7px}
+.spec-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.st-1{top:6%;left:2%}.st-2{top:20%;right:0}.st-3{bottom:12%;left:6%}
+.hv-chip{position:absolute;z-index:4;width:158px}
+.hv-card{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border:1.5px solid var(--line);border-radius:var(--r-md);padding:12px;box-shadow:var(--sh-lg)}
+.hv-card figcaption{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--ink-2);margin-top:8px}
+.hv-card figcaption b{color:var(--ink);font-size:13px}
+.hc-1{top:0;right:2%}.hc-2{bottom:4%;right:8%}.hc-3{top:10%;left:0}.hc-4{bottom:0;left:4%}
+.hv-bubble{position:absolute;width:52px;height:52px;border-radius:16px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;box-shadow:var(--sh-md);z-index:5}
+.hb-1{top:40%;left:14%;color:var(--orange)}.hb-2{top:-3%;left:46%;color:var(--blue)}.hb-3{bottom:28%;right:2%;color:var(--blue-deep)}
+.floaty{animation:float 6s ease-in-out infinite}
+.f2{animation-duration:7.4s;animation-delay:.7s}.f3{animation-duration:5.4s;animation-delay:1.3s}.f4{animation-duration:8s;animation-delay:.4s}.f5{animation-duration:6.6s;animation-delay:1.8s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(-1.2deg)}}
+
+/* ========== MARQUEE ========== */
+.marquee{background:linear-gradient(90deg,var(--blue),var(--blue-deep));color:#fff;padding:16px 0;overflow:hidden;transform:rotate(-1.1deg) scale(1.02);box-shadow:var(--sh-md)}
+.mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-track span{display:inline-flex;align-items:center;gap:11px;padding:0 26px;font-family:'Space Grotesk';font-weight:600;font-size:15px;letter-spacing:.04em;white-space:nowrap}
+.mq-track .ic{color:var(--orange);width:17px;height:17px;filter:brightness(1.5)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ========== UNIVERS ========== */
+.uni-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.uni-card{background:var(--white);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:26px;position:relative;overflow:hidden;animation:float 7s ease-in-out infinite;transition:border-color .3s,box-shadow .3s,transform .3s;will-change:transform}
+.uni-card:nth-child(2){animation-delay:1.1s}.uni-card:nth-child(3){animation-delay:2.2s}
+.uni-card:hover{border-color:var(--uc);box-shadow:var(--sh-lg);animation-play-state:paused}
+.uni-art{border-radius:var(--r-md);padding:26px 20px 18px;background:var(--uc-soft);position:relative;margin-bottom:22px;overflow:hidden}
+.uni-art::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(10,37,64,.07) 1px,transparent 0);background-size:18px 18px}
+.uni-art .ill-wrap,.uni-art .ph-wrap{position:relative;z-index:1;animation:float 5.5s ease-in-out infinite reverse}
+.uni-art .ph-wrap{aspect-ratio:22/15}
+.uni-tag{position:absolute;top:14px;right:14px;z-index:2;width:42px;height:42px;border-radius:13px;background:#fff;color:var(--uc);display:grid;place-items:center;box-shadow:var(--sh-sm)}
+.uni-card h3{font-size:var(--fs-h3);margin-bottom:10px}
+.uni-card p{color:var(--ink-2);font-size:14.5px;margin-bottom:18px}
+.uni-meta{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1.5px dashed var(--line)}
+.uni-meta span{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--uc)}
+.uni-link{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--uc)}
+.uni-link .ic{transition:.25s}
+.uni-card:hover .uni-link .ic{transform:translateX(5px)}
+
+/* ========== ÉTAPES ========== */
+/* ===== MODAL APERÇU LIVRE ===== */
+.ap-overlay{position:fixed;inset:0;background:rgba(4,18,52,.72);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.ap-overlay.open{opacity:1;pointer-events:all}
+.ap-modal{background:#fff;border-radius:var(--r-lg);width:min(760px,100%);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.35);transform:translateY(28px) scale(.97);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.ap-overlay.open .ap-modal{transform:translateY(0) scale(1)}
+/* Head */
+.ap-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0}
+.ap-head-left{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.ap-head-right{display:flex;align-items:center;gap:14px}
+.ap-pages-info{font-size:13px;color:var(--muted)}
+/* Body */
+.ap-body{flex:1;overflow-y:auto;overflow-x:hidden;background:#F4F6FB}
+.ap-book-wrap{position:relative;min-height:400px}
+.ap-page{display:none;animation:apFadeIn .3s ease}
+.ap-page.active{display:block}
+@keyframes apFadeIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+.ap-page.anim-left{animation:apFadeLeft .3s ease}
+@keyframes apFadeLeft{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+/* Couverture */
+.apg-cover{background:linear-gradient(145deg,#03102E 0%,#0A2B80 50%,#0A6CFF 100%);min-height:480px;display:flex;flex-direction:column;justify-content:space-between;padding:40px;color:#fff}
+.apg-cov-top{display:flex;justify-content:flex-end}
+.apg-badge{background:var(--orange);color:#fff;font-size:11px;font-weight:800;padding:5px 14px;border-radius:99px;letter-spacing:.06em}
+.apg-cov-title{text-align:center;margin:20px 0}
+.apg-cov-pre{font-size:13px;letter-spacing:.3em;color:rgba(255,255,255,.55);margin:0 0 10px;font-weight:700;text-transform:uppercase}
+.apg-cov-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.1;margin:0 0 14px;color:#fff}
+.apg-cov-sub{font-size:15px;color:rgba(255,255,255,.65);margin:0;font-style:italic}
+.apg-cov-topics{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0}
+.apg-cov-topics span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px}
+.apg-cov-footer{text-align:center;font-size:13px;color:rgba(255,255,255,.45);border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-style:italic}
+/* Inner pages */
+.apg-inner{padding:36px 40px;max-width:680px;margin:0 auto}
+.apg-chapter-label{display:inline-block;background:var(--blue-100);color:var(--blue);font-size:11.5px;font-weight:700;padding:4px 14px;border-radius:99px;letter-spacing:.06em;margin-bottom:14px;text-transform:uppercase}
+.apg-h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;color:var(--ink);margin:0 0 22px;line-height:1.25}
+.apg-h3{font-size:15px;font-weight:700;color:var(--ink);margin:20px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+.apg-p{font-size:14.5px;line-height:1.75;color:#374151;margin:0 0 14px}
+.apg-def{background:var(--blue-100);border-left:4px solid var(--blue);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:14px 18px;font-size:13.5px;line-height:1.65;color:var(--ink);margin:14px 0 20px}
+.apg-def-label{display:block;font-size:10.5px;font-weight:800;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.apg-ul{padding-left:0;list-style:none;display:grid;gap:8px;margin:0 0 16px}
+.apg-ul li{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.6;color:#374151}
+.apg-ul li::before{content:"→";color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+/* TOC */
+.apg-toc{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:10px}
+.apg-toc-col{display:grid;gap:4px}
+.apg-toc-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-sm);transition:.15s}
+.apg-toc-item:hover{background:var(--blue-100)}
+.apg-toc-n{background:var(--blue);color:#fff;font-size:10px;font-weight:800;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.apg-toc-item span:last-child{font-size:13px;color:var(--ink-2)}
+/* Zone floue */
+.apg-blur-zone{position:relative;overflow:hidden;border-radius:var(--r-md)}
+.apg-blur-zone .apg-p{filter:blur(3.5px);user-select:none;pointer-events:none;margin:0}
+.apg-blur-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(244,246,251,0) 0%,rgba(244,246,251,.97) 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px}
+.apg-blur-overlay p{font-size:15px;font-weight:600;color:var(--ink);margin:0}
+.apg-blur-overlay .btn{padding:12px 24px;font-size:14px}
+/* Footer nav */
+.ap-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-top:1px solid var(--line);background:#fff;flex-shrink:0;gap:12px}
+.ap-dots{display:flex;gap:8px}
+.ap-dot{width:10px;height:10px;border-radius:50%;border:none;background:var(--line);cursor:pointer;transition:.2s;padding:0}
+.ap-dot.active{background:var(--blue);width:24px;border-radius:5px}
+.ap-nav{display:flex;gap:10px}
+.ap-btn-nav{padding:9px 18px;font-size:13.5px;display:flex;align-items:center;gap:6px}
+.ap-btn-nav:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:640px){
+  .ap-modal{max-height:95vh;border-radius:var(--r-md)}
+  .apg-toc{grid-template-columns:1fr}
+  .apg-inner{padding:20px 16px}
+  .apg-cover{padding:28px 20px;min-height:380px}
+  .apg-cov-h1{font-size:28px}
+  .ap-head{padding:10px 14px;flex-wrap:wrap;gap:6px}
+  .ap-foot{flex-wrap:wrap;justify-content:center;padding:12px 14px}
+  .ap-btn-nav{padding:8px 14px;font-size:13px}
+}
+/* ===== LIVRE ===== */
+.livre{padding:var(--sec) 0;background:var(--bg)}
+.livre-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:center}
+/* --- Visuel livre --- */
+.livre-vis{position:relative;display:flex;justify-content:center;align-items:center;padding:40px 0 60px}
+.livre-book{position:relative;width:220px;perspective:800px}
+.livre-cover{width:220px;min-height:300px;background:linear-gradient(145deg,#0A1A3A 0%,#0A3B9A 55%,#0A6CFF 100%);border-radius:6px 18px 18px 6px;padding:24px 20px 22px;box-shadow:6px 8px 40px rgba(0,20,80,.45),inset -3px 0 10px rgba(0,0,0,.25);display:flex;flex-direction:column;justify-content:space-between;transform:rotateY(-12deg);transition:transform .4s ease}
+.livre-book:hover .livre-cover{transform:rotateY(-4deg)}
+.lc-top{display:flex;justify-content:space-between;align-items:center}
+.lc-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.05em}
+.lc-chip{background:var(--orange);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.07em}
+.lc-title{margin:16px 0 12px}
+.lc-pre{display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase}
+.lc-main{display:block;font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:.02em}
+.lc-topics{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
+.lc-topics span{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);font-size:9.5px;font-weight:600;padding:3px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.lc-author{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.06em;margin-top:12px}
+.livre-spine{position:absolute;left:-16px;top:4px;bottom:4px;width:16px;background:linear-gradient(90deg,#06174A,#0A2E80);border-radius:4px 0 0 4px;transform:rotateY(90deg) translateZ(-8px)}
+.livre-shadow{position:absolute;bottom:-18px;left:16px;right:-4px;height:28px;background:radial-gradient(ellipse,rgba(10,108,255,.22) 0%,transparent 70%);filter:blur(10px);z-index:-1}
+.livre-pill{position:absolute;background:#fff;box-shadow:var(--sh-md);border-radius:30px;font-size:12px;font-weight:700;color:var(--ink);padding:8px 16px;white-space:nowrap}
+.lp1{top:10%;right:-10px}
+.lp2{top:50%;right:-30px}
+.lp3{bottom:12%;left:-10px}
+/* --- Infos --- */
+.livre-info{display:flex;flex-direction:column;gap:20px}
+.livre-h2{font-size:clamp(28px,3.5vw,42px);line-height:1.18;margin:0}
+.livre-desc{color:var(--muted);font-size:15.5px;line-height:1.7;margin:0}
+.livre-feats{list-style:none;display:grid;gap:10px;margin:0;padding:0}
+.livre-feats li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500}
+.livre-prix{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-md);padding:18px 22px}
+.lp-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lp-now{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;color:var(--ink)}
+.lp-old{font-size:16px;color:var(--muted);text-decoration:line-through}
+.lp-badge{background:var(--orange);color:#fff;font-size:12px;font-weight:800;padding:4px 12px;border-radius:99px}
+.lp-sub{font-size:13px;color:var(--muted);margin:6px 0 0}
+.livre-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.livre-btn-buy{padding:14px 28px;font-size:15px}
+.livre-btn-preview{padding:14px 24px;font-size:15px}
+.livre-stars{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
+.livre-stars span:first-child{color:#F59E0B;font-size:16px;letter-spacing:2px}
+/* responsive */
+@media(max-width:900px){
+  .livre-inner{grid-template-columns:1fr;gap:36px}
+  .livre-vis{padding:20px 0 40px;order:0}
+  .livre-info{order:1}
+  .livre-book{width:180px}
+  .livre-cover{width:180px;min-height:250px}
+  .lc-main{font-size:22px}
+  .lp1,.lp2,.lp3{display:none}
+  .livre-ctas{flex-direction:column}
+  .livre-btn-buy,.livre-btn-preview{width:100%;justify-content:center;text-align:center}
+}
+@media(max-width:540px){
+  .livre{padding:60px 0}
+  .livre-h2{font-size:24px}
+  .livre-prix{padding:14px 16px}
+  .lp-now{font-size:26px}
+}
+/* ===== ANATOMIE ===== */
+.anatomy{background:linear-gradient(160deg,var(--deep) 0%,#001A3A 100%);padding:var(--sec) 0;overflow:hidden}
+.anatomy .sec-head h2{color:#fff}
+.anatomy .sec-head p{color:rgba(255,255,255,.6)}
+.anatomy .badge-label{background:rgba(10,108,255,.25)!important;color:#60A5FA!important;border:1px solid rgba(10,108,255,.4)}
+.anatomy-stage{display:flex;justify-content:center;margin-top:48px}
+.anatomy-img-wrap{width:min(960px,100%);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55),0 0 0 1px rgba(10,108,255,.2);transition:transform .4s ease}
+.anatomy-img-wrap:hover{transform:scale(1.015)}
+@media(max-width:640px){
+  .anatomy-img-wrap{border-radius:12px}
+  .anatomy{padding:60px 0}
+}
+.anatomy-img-full{width:100%;height:auto;display:block}
+.steps{padding:var(--sec-sm) 0}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.steps-grid::before{content:"";position:absolute;top:34px;left:12%;right:12%;border-top:2.5px dashed var(--line);z-index:0}
+.step{position:relative;z-index:1;text-align:center;padding:0 8px}
+.step-n{width:68px;height:68px;margin:0 auto 18px;border-radius:22px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--sc);box-shadow:var(--sh-sm);position:relative;transition:.3s}
+.step-n b{position:absolute;top:-9px;right:-9px;width:26px;height:26px;border-radius:50%;background:var(--sc);color:#fff;font-size:12.5px;display:grid;place-items:center;font-family:'Space Grotesk'}
+.step:hover .step-n{transform:translateY(-6px) rotate(-4deg);box-shadow:var(--sh-md);border-color:var(--sc)}
+.step h4{font-size:17px;margin-bottom:8px}
+.step p{font-size:13.5px;color:var(--ink-2)}
+
+/* ========== ZONES ========== */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.zone{border-radius:var(--r-lg);padding:30px;position:relative;overflow:hidden;border:1.5px solid var(--line);background:var(--white);transition:.35s cubic-bezier(.2,.8,.2,1)}
+.zone:hover{transform:translateY(-7px);box-shadow:var(--sh-lg)}
+.zone h3{font-size:var(--fs-h3);margin:14px 0 10px}
+.zone p{font-size:14.5px;color:var(--ink-2)}
+.zone-ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:#fff;box-shadow:var(--sh-sm)}
+.zone-link{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;margin-top:18px}
+.zone-link .ic{transition:.25s}
+.zone:hover .zone-link .ic{transform:translateX(5px)}
+.zone::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--zc,transparent);filter:blur(70px);opacity:.5;top:-90px;right:-70px;pointer-events:none}
+.zone-kit{grid-column:span 2;grid-row:span 2;background:linear-gradient(150deg,var(--blue) 0%,var(--blue-deep) 90%);border-color:transparent;color:#EAF2FF;padding:38px 38px 0 38px;--zc:rgba(255,106,0,.35);overflow:hidden}
+.zone-kit::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.12) 1px,transparent 0);background-size:24px 24px;pointer-events:none}
+.zone-kit h3{font-size:clamp(26px,3vw,34px);color:#fff}
+.zone-kit p{color:#C4DAFF}
+.zone-kit .zone-ico{background:rgba(255,255,255,.16);color:var(--orange);box-shadow:none;filter:brightness(1.4)}
+.kit-list{list-style:none;margin:22px 0;display:grid;gap:11px;position:relative;z-index:2}
+.kit-list li{display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:600}
+.kit-list .ic{color:#fff;background:var(--orange);border-radius:50%;padding:3px;width:20px;height:20px}
+.kit-price{display:flex;align-items:baseline;gap:12px;margin:6px 0 20px;position:relative;z-index:2;flex-wrap:wrap}
+.kit-price b{font-family:'Space Grotesk';font-size:38px;color:#fff}
+.kit-price s{color:#9DBBF0;font-size:17px}
+.kit-price span{background:var(--orange);color:#fff;font-size:12px;font-weight:800;padding:5px 12px;border-radius:99px}
+.kit-img-wrap{position:absolute;right:-18px;bottom:-10px;width:min(480px,58%);z-index:1;filter:drop-shadow(0 30px 50px rgba(0,20,80,.6));max-width:calc(100% - 20px)}
+.kit-tags{position:absolute;z-index:3;background:rgba(255,255,255,.95);color:var(--blue-deep);font-size:11px;font-weight:800;letter-spacing:.06em;padding:6px 12px;border-radius:99px;box-shadow:var(--sh-md)}
+.kt-1{right:6%;bottom:56%}.kt-2{right:28%;bottom:14%}
+.zone-cap{grid-column:span 2;background:var(--blue-50);border-color:#D5E5FF;--zc:rgba(10,108,255,.18)}
+.zone-cap .zone-ico{color:var(--blue)}
+.cap-row{display:flex;gap:18px;margin-top:20px;flex-wrap:wrap}
+.cap-row figure{background:#fff;border-radius:16px;padding:12px;box-shadow:var(--sh-sm);animation:float 6s ease-in-out infinite;flex:1;min-width:120px;max-width:180px}
+.cap-row figure:nth-child(2){animation-delay:1s}.cap-row figure:nth-child(3){animation-delay:2s}
+.zone-sou{background:var(--orange-100);border-color:#FFD9BC;--zc:rgba(255,106,0,.25)}
+.zone-sou .zone-ico{color:var(--orange)}
+.sou-img{margin-top:16px;filter:drop-shadow(0 18px 26px rgba(224,90,0,.35));width:100%;max-height:200px;object-fit:contain}
+.sou-feats{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.sou-feats span{background:#fff;border-radius:99px;padding:6px 12px;font-size:11.5px;font-weight:800;color:var(--orange-d)}
+.zone-promo{background:linear-gradient(150deg,var(--orange),var(--orange-d));border-color:transparent;color:#fff;--zc:rgba(255,255,255,.3)}
+.zone-promo p{color:#FFE3CE}
+.zone-promo .zone-ico{background:rgba(255,255,255,.18);color:#fff;box-shadow:none}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.cd-box{background:rgba(255,255,255,.18);border-radius:13px;padding:10px 4px;text-align:center;backdrop-filter:blur(4px)}
+.cd-box b{font-family:'Space Grotesk';font-size:21px;display:block;line-height:1.1}
+.cd-box small{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.9}
+.promo-code{display:inline-flex;align-items:center;gap:8px;margin-top:16px;border:1.5px dashed rgba(255,255,255,.7);border-radius:11px;padding:8px 14px;font-weight:800;font-size:13.5px;letter-spacing:.08em}
+.zone-tuto{grid-column:span 2;background:var(--blue-100);border-color:#CFE0FF;--zc:rgba(10,108,255,.2)}
+.zone-tuto .zone-ico{color:var(--blue-deep)}
+.tuto-pills{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.tuto-pills span{background:#fff;border-radius:99px;padding:8px 15px;font-size:12.5px;font-weight:800;color:var(--blue-deep);display:inline-flex;align-items:center;gap:8px;box-shadow:var(--sh-sm)}
+.tuto-pills .ic{width:14px;height:14px;color:var(--orange)}
+.zone-pro{grid-column:span 2;--zc:rgba(255,106,0,.15)}
+.zone-pro .zone-ico{color:var(--orange)}
+.pro-perks{display:flex;gap:22px;margin-top:16px;flex-wrap:wrap}
+.pro-perks div{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.pro-perks .ic{width:17px;height:17px;color:var(--blue)}
+.zone-recond{grid-column:span 2;background:var(--blue-50);border-color:#D5E5FF;--zc:rgba(10,108,255,.18)}
+.zone-recond .zone-ico{color:var(--blue)}
+.recond-bar{margin-top:16px;background:#fff;border-radius:14px;padding:14px 16px;box-shadow:var(--sh-sm);display:flex;align-items:center;gap:14px}
+.recond-bar b{font-family:'Space Grotesk';font-size:22px;color:var(--blue)}
+.recond-bar small{display:block;font-size:12px;color:var(--ink-2)}
+.zone-comm{grid-column:span 2;background:var(--orange-100);border-color:#FFD9BC;--zc:rgba(255,106,0,.25)}
+.zone-comm .zone-ico{color:var(--orange)}
+.comm-avs{display:flex;margin-top:16px}
+.comm-avs span{width:42px;height:42px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;font-family:'Space Grotesk';margin-left:-10px}
+.comm-avs span:first-child{margin-left:0}
+.comm-avs span.more{background:#fff;color:var(--orange-d);border-color:var(--orange-100)}
+
+/* ========== DEALS FLASH ========== */
+.deals{padding:var(--sec-sm) 0}
+.deals-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.deals-nav{display:flex;gap:10px}
+.deals-nav button{width:46px;height:46px;border-radius:14px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:.25s}
+.deals-nav button:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.deal-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 22px;scrollbar-width:none}
+.deal-track::-webkit-scrollbar{display:none}
+.deal{flex:0 0 262px;scroll-snap-align:start;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:18px;position:relative;transition:.3s}
+.deal:hover{transform:translateY(-6px);box-shadow:var(--sh-md);border-color:#C6DAFF}
+.deal-off{position:absolute;top:14px;right:14px;background:var(--orange);color:#fff;font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:99px;box-shadow:0 6px 14px rgba(255,106,0,.4)}
+.deal .ph-wrap,.deal .ill-wrap{width:100%;margin:8px 0 14px}
+.deal h4{font-size:15.5px;margin-bottom:6px}
+.deal-prices{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.deal-prices b{font-family:'Space Grotesk';font-size:20px;color:var(--blue)}
+.deal-prices s{font-size:13px;color:var(--ink-2)}
+.stock{height:7px;background:var(--blue-100);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.stock i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--blue));width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.deal small{font-size:11.5px;color:var(--ink-2);font-weight:600}
+.deal .add-btn{position:absolute;bottom:16px;right:16px}
+
+/* ========== PRODUITS ========== */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.tab{padding:10px 20px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:14px;font-weight:700;color:var(--ink-2);transition:.25s;white-space:nowrap}
+.tab:hover{border-color:var(--blue);color:var(--blue)}
+.tab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 10px 22px rgba(10,108,255,.35)}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:24px}
+.p-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:box-shadow .35s,border-color .35s;position:relative;display:flex;flex-direction:column;transform-style:preserve-3d;will-change:transform}
+.p-card:hover{box-shadow:var(--sh-lg);border-color:#C6DAFF}
+.p-card.hide{display:none}
+.p-card.pop{animation:cardIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.p-art{background:linear-gradient(160deg,#FAFCFF,#EDF4FF);padding:24px 20px;position:relative;display:grid;place-items:center;min-height:178px}
+.p-art .ill-wrap,.p-art .ph-wrap{transition:.4s cubic-bezier(.2,.8,.2,1);width:196px}
+.p-card:hover .p-art .ill-wrap,.p-card:hover .p-art .ph-wrap{transform:scale(1.07) rotate(-1.5deg)}
+.p-badge{position:absolute;top:14px;left:14px;z-index:3;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:99px;color:#fff}
+.b-best{background:var(--blue)}.b-new{background:var(--blue-deep)}.b-promo{background:var(--orange)}
+.p-wish{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:11px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:.25s}
+.p-wish:hover{color:var(--orange);border-color:var(--orange)}
+.p-wish.active{color:var(--orange);background:var(--orange-100);border-color:var(--orange)}
+.p-wish.active .ic{fill:var(--orange)}
+.p-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p-cat{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.p-name{font-family:'Space Grotesk';font-weight:600;font-size:16.5px}
+.p-rate{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2)}
+.stars{display:flex;gap:2px;color:var(--orange)}
+.stars .ic{width:14px;height:14px;fill:currentColor;stroke:none}
+.stars .ic.off{color:#DCE4EF}
+.p-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px}
+.p-price b{font-family:'Space Grotesk';font-size:20px}
+.p-price s{font-size:13px;color:var(--ink-2);margin-left:7px}
+.add-btn{width:44px;height:44px;border-radius:13px;background:var(--blue);color:#fff;display:grid;place-items:center;transition:.25s;box-shadow:0 8px 18px rgba(10,108,255,.3)}
+.add-btn:hover{background:var(--orange);transform:rotate(-8deg) scale(1.08);box-shadow:0 10px 22px rgba(255,106,0,.4)}
+.add-btn .ic{width:19px;height:19px}
+
+/* ========== PROJETS ========== */
+.proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.proj{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.proj:hover{transform:translateY(-7px);box-shadow:var(--sh-md)}
+.proj-art{height:150px;display:grid;place-items:center;position:relative;overflow:hidden}
+.proj-art .ill-wrap{width:150px;transition:.4s}
+.proj:hover .proj-art .ill-wrap{transform:scale(1.1) rotate(2deg)}
+.proj-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.proj-tags{display:flex;gap:8px;flex-wrap:wrap}
+.proj-tags span{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
+.t-easy{background:var(--blue-100);color:var(--blue-deep)}
+.t-mid{background:var(--orange-100);color:var(--orange-d)}
+.t-time{background:var(--bg);color:var(--ink-2)}
+.proj h4{font-size:16.5px}
+.proj p{font-size:13.5px;color:var(--ink-2)}
+.proj-link{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13.5px;color:var(--blue)}
+.proj-link .ic{width:15px;height:15px;transition:.25s}
+.proj:hover .proj-link .ic{transform:translateX(4px)}
+
+/* ========== STATS / COMPAT ========== */
+.stats{background:linear-gradient(120deg,var(--blue) 0%,var(--blue-deep) 100%);color:#fff;padding:66px 0;position:relative;overflow:hidden}
+.stats::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.12) 1px,transparent 0);background-size:26px 26px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative}
+.stat{display:flex;gap:16px;align-items:center}
+.stat .zone-ico{background:rgba(255,255,255,.15);color:var(--orange);box-shadow:none;filter:brightness(1.5)}
+.stat b{font-family:'Space Grotesk';font-size:32px;display:block;line-height:1.1}
+.stat small{color:#C4DAFF;font-size:13.5px}
+.compat{padding:var(--sec-sm) 0}
+.compat-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.compat-list span{padding:11px 22px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14.5px;color:var(--ink-2);transition:.25s;cursor:default}
+.compat-list span:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-50);transform:translateY(-3px)}
+
+/* ========== AVANTAGES / AVIS ========== */
+.perks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.perk{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:28px;transition:.3s;position:relative;overflow:hidden}
+.perk::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pc);transform:scaleY(0);transform-origin:top;transition:.35s}
+.perk:hover::after{transform:scaleY(1)}
+.perk:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.perk .zone-ico{color:var(--pc);margin-bottom:18px;background:var(--pcs)}
+.perk h4{font-size:17.5px;margin-bottom:8px}
+.perk p{font-size:14px;color:var(--ink-2)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:28px;transition:.3s}
+.rev:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.rev .stars{margin-bottom:16px}
+.rev .stars .ic{width:17px;height:17px}
+.rev q{font-size:15px;color:var(--ink-2);display:block;margin-bottom:22px;quotes:"«" "»"}
+.rev-who{display:flex;align-items:center;gap:13px}
+.avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-family:'Space Grotesk';font-size:16px}
+.rev-who b{display:block;font-size:14.5px}
+.rev-who small{color:var(--ink-2);font-size:12.5px}
+
+/* ========== FAQ ========== */
+.faq-wrap{max-width:780px;margin-inline:auto;display:grid;gap:14px}
+.faq{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:.3s}
+.faq.open{border-color:var(--blue);box-shadow:var(--sh-sm)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;text-align:left;font-family:'Space Grotesk';font-weight:600;font-size:16px;color:var(--ink)}
+.faq-q .ic{color:var(--orange);transition:.35s;flex:none}
+.faq.open .faq-q .ic{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.8,.2,1)}
+.faq-a p{padding:0 24px 22px;font-size:14.5px;color:var(--ink-2)}
+
+/* ========== NEWSLETTER / FOOTER ========== */
+.news-card{background:linear-gradient(120deg,var(--blue) 0%,var(--blue-deep) 100%);border-radius:var(--r-lg);padding:56px;color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;box-sizing:border-box;width:100%}
+.news-card::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.12) 1px,transparent 0);background-size:24px 24px}
+.news-card h3{font-size:clamp(24px,3vw,34px);margin-bottom:12px;position:relative}
+.news-card p{color:#C4DAFF;position:relative}
+.news-form{display:flex;gap:12px;position:relative;flex-wrap:wrap;margin-top:26px}
+.news-form input{flex:1;min-width:220px;padding:15px 22px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);background:rgba(255,255,255,.14);color:#fff;font-size:15px;outline:none;backdrop-filter:blur(6px);transition:.25s}
+.news-form input::placeholder{color:#B9CCE4}
+.news-form input:focus{border-color:#fff;background:rgba(255,255,255,.22)}
+.news-ok{display:none;align-items:center;gap:12px;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.6);padding:15px 22px;border-radius:14px;font-weight:700;position:relative;margin-top:26px}
+.news-ill{position:relative;z-index:1;display:flex;justify-content:center;gap:8px;align-items:flex-start}
+.news-ill .hv-card{width:240px;animation:float 6.5s ease-in-out infinite}
+.news-ill .hv-card:last-child{width:200px;animation-delay:1.2s;margin-top:36px}
+footer{background:var(--deep);color:#9FB6DC;padding:70px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px}
+.foot-grid h5{color:#fff;font-family:'Space Grotesk';font-size:15.5px;margin-bottom:18px}
+.foot-grid ul{list-style:none;display:grid;gap:11px}
+.foot-grid ul a{font-size:14px;transition:.2s}
+.foot-grid ul a:hover{color:var(--orange);padding-left:5px}
+.foot-about p{font-size:14px;margin:16px 0 22px;max-width:300px}
+.foot-about .logo{color:#fff}
+.socials{display:flex;gap:10px}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#DCE7F5;transition:.25s}
+.socials a:hover{background:var(--orange);color:#fff;transform:translateY(-4px)}
+.foot-bar{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px}
+.pays{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pays span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);padding:7px 13px;border-radius:9px;font-size:12px;font-weight:700}
+.pays .ic{width:15px;height:15px;color:var(--orange)}
+
+/* ========== PANIER / TOASTS ========== */
+.overlay{position:fixed;inset:0;background:rgba(4,32,79,.5);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.35s;z-index:120}
+.overlay.show{opacity:1;pointer-events:auto}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:130;transform:translateX(105%);transition:.45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:var(--sh-lg)}
+.cart.open{transform:none}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1.5px solid var(--line)}
+.cart-head h4{font-size:19px;display:flex;align-items:center;gap:10px}
+.cart-list{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:14px}
+.cart-empty{margin:auto;text-align:center;color:var(--ink-2);display:grid;gap:14px;justify-items:center;padding:30px}
+.cart-empty .ic{width:52px;height:52px;color:#C6D2E2}
+.ci{display:flex;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:12px;align-items:center;animation:cardIn .35s}
+.ci-thumb{width:68px;height:52px;background:var(--blue-50);border-radius:10px;display:grid;place-items:center;padding:6px;flex:none;overflow:hidden;position:relative}
+.ci-thumb img{width:100%;height:100%;object-fit:contain}
+.ci-info{flex:1;min-width:0}
+.ci-info b{font-size:13.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-info small{color:var(--ink-2);font-size:12.5px}
+.qty{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:99px;padding:4px 8px}
+.qty button{width:20px;height:20px;display:grid;place-items:center;color:var(--ink-2);border-radius:50%}
+.qty button:hover{background:var(--blue-100);color:var(--blue)}
+.qty .ic{width:13px;height:13px}
+.qty span{font-size:13px;font-weight:800;min-width:14px;text-align:center}
+.ci-del{color:var(--ink-2);width:32px;height:32px;display:grid;place-items:center;border-radius:9px}
+.ci-del:hover{color:var(--orange);background:var(--orange-100)}
+.ci-del .ic{width:16px;height:16px}
+.cart-foot{border-top:1.5px solid var(--line);padding:20px 24px;display:grid;gap:14px;background:#FAFCFF}
+.ct-row{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2)}
+.ct-row.total{font-size:18px;color:var(--ink);font-weight:800;font-family:'Space Grotesk'}
+.cart-foot .btn{justify-content:center}
+.cart-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--ink-2)}
+.cart-note .ic{width:14px;height:14px;color:var(--blue)}
+.toasts{position:fixed;bottom:24px;left:24px;z-index:200;display:flex;flex-direction:column;gap:10px}
+.toast{display:flex;align-items:center;gap:12px;background:var(--deep);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:var(--sh-lg);font-size:14px;font-weight:600;animation:tIn .4s cubic-bezier(.2,.8,.2,1);border-left:4px solid var(--orange)}
+.toast .ic{color:var(--orange);width:19px;height:19px}
+.toast.out{animation:tOut .35s forwards}
+@keyframes tIn{from{opacity:0;transform:translateX(-30px)}}
+@keyframes tOut{to{opacity:0;transform:translateY(14px)}}
+.to-top{position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:16px;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(10,108,255,.45);z-index:110;opacity:0;pointer-events:none;transform:translateY(16px);transition:.35s}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--orange)}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:1020px){
+  :root{--sec:88px;--sec-sm:64px}
+  body{padding-top:96px}
+  .nav-links,.nav-search{display:none}
+  .burger{display:grid}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{min-height:480px;margin-top:16px}
+  .uni-grid{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:34px}
+  .steps-grid::before{display:none}
+  .bento{grid-template-columns:1fr 1fr}
+  .zone-kit,.zone-cap,.zone-tuto,.zone-pro,.zone-recond,.zone-comm{grid-column:span 2}
+  .zone-sou,.zone-promo{grid-column:span 1}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .stats-grid,.perks-grid{grid-template-columns:1fr 1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .news-card{grid-template-columns:1fr;padding:40px}
+  .news-ill{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  body{padding-top:88px}
+  .container{padding:0 14px}
+  .nav-wrap{top:10px}
+  nav{height:60px;padding:0 14px;gap:10px;border-radius:20px}
+  .logo{font-size:19px}.logo-mark{width:38px;height:38px}
+  .icon-btn{width:38px;height:38px}
+  .mobile-menu{top:78px}
+  .hero{padding:26px 0 60px}
+  .hero-vis{min-height:400px}
+  .hv-main{width:92%}
+  .hv-chip{width:118px}
+  .hc-3{left:-2%}.hc-1{right:-2%}
+  .spec-tag{display:none}
+  .uni-grid,.bento,.stats-grid,.perks-grid,.foot-grid,.proj-grid,.steps-grid{grid-template-columns:1fr}
+  .zone-kit,.zone-cap,.zone-tuto,.zone-pro,.zone-sou,.zone-promo,.zone-recond,.zone-comm{grid-column:span 1}
+  .zone-kit{grid-row:span 1;padding:28px}
+  .kit-img-wrap{position:relative;right:auto;bottom:auto;width:80%;margin:20px auto 0}
+  .kt-1,.kt-2{display:none}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .deals-head{align-items:start}
+  .news-card{padding:30px}
+  .foot-bar{justify-content:center;text-align:center}
+  .toasts{left:12px;right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="loader"><div class="ld-in">
+  <span class="ld-mark"><svg class="ic"><use href="#i-cpu"/></svg></span>
+  <div class="ld-bar"><i></i></div>
+  <span>OHMLAB</span>
+</div></div>
+
+<!-- ================= SPRITE ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 6V3.5M12 6V3.5M16 6V3.5M8 20.5V18M12 20.5V18M16 20.5V18"/><circle cx="8.5" cy="10" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h2.5l2.6 12.4a1.8 1.8 0 0 0 1.8 1.4h8.6a1.8 1.8 0 0 0 1.8-1.4L21.5 8H6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19.5 12.6 12 20l-7.5-7.4A5 5 0 1 1 12 6.3a5 5 0 1 1 7.5 6.3Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1.5 5h13v11h-13z"/><path d="M14.5 9h4l3 3v4h-7"/><circle cx="6" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v6c0 5 3.4 8.3 7.5 10 4.1-1.7 7.5-5 7.5-10v-6z"/><path d="m9 11.5 2.2 2.2L15.5 9"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 17v5"/></symbol>
+    <symbol id="i-radio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M7.5 7.5a6.4 6.4 0 0 0 0 9M16.5 7.5a6.4 6.4 0 0 1 0 9M4.6 4.6a10.5 10.5 0 0 0 0 14.8M19.4 4.6a10.5 10.5 0 0 1 0 14.8"/></symbol>
+    <symbol id="i-solder" viewBox="0 0 24 24"><path d="m14 4 6 6-8.5 8.5-6-6z"/><path d="m5.5 12.5-2 6 6-2"/><path d="M17 2.5 21.5 7"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8" cy="9" r="1.4"/><circle cx="15.5" cy="14.5" r="1.4"/><path d="M8 10.5V16h6M15.5 13V8H11"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 2.5 21 7v10l-9 4.5L3 17V7z"/><path d="M3 7l9 4.5L21 7M12 11.5v10"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c0 1.4 2.5 2.8 5.5 2.8s5.5-1.4 5.5-2.8V11"/><path d="M21.5 9v5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5l6 3.5-6 3.5z"/></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.4"/><circle cx="17" cy="17" r="2.4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 6.5h16M9.5 6.5V4.8A1.8 1.8 0 0 1 11.3 3h1.4a1.8 1.8 0 0 1 1.8 1.8v1.7M6.5 6.5 7.4 20a1.8 1.8 0 0 0 1.8 1.7h5.6a1.8 1.8 0 0 0 1.8-1.7l.9-13.5"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4.5" height="7" rx="2"/><rect x="17" y="13" width="4.5" height="7" rx="2"/><path d="M20 20v1a3 3 0 0 1-3 3h-4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/><path d="M4 17a2.5 2.5 0 0 1 2.5-2.5H20"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13M6.5 11.5 12 17l5.5-5.5"/><path d="M4 20.5h16"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+    <symbol id="i-x-social" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></symbol>
+    <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="13" rx="3.5" fill="currentColor" stroke="none"/><path d="M10.2 9.6l5 2.9-5 2.9z" fill="#04204F" stroke="none"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></symbol>
+
+    <symbol id="ill-uno" viewBox="0 0 220 150">
+      <rect x="8" y="18" width="204" height="114" rx="12" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <circle cx="24" cy="34" r="5" fill="#fff"/><circle cx="196" cy="34" r="5" fill="#fff"/><circle cx="24" cy="116" r="5" fill="#fff"/><circle cx="196" cy="116" r="5" fill="#fff"/>
+      <rect x="2" y="42" width="36" height="26" rx="4" fill="var(--silv)" stroke="var(--silv-d)" stroke-width="2"/>
+      <rect x="14" y="96" width="30" height="24" rx="4" fill="var(--blk)"/>
+      <rect x="62" y="26" width="128" height="11" rx="3" fill="var(--blk)"/><rect x="62" y="113" width="128" height="11" rx="3" fill="var(--blk)"/>
+      <g fill="var(--orange)"><circle cx="72" cy="31.5" r="2"/><circle cx="86" cy="31.5" r="2"/><circle cx="100" cy="31.5" r="2"/><circle cx="114" cy="31.5" r="2"/><circle cx="128" cy="31.5" r="2"/><circle cx="142" cy="31.5" r="2"/><circle cx="156" cy="31.5" r="2"/><circle cx="170" cy="31.5" r="2"/><circle cx="184" cy="31.5" r="2"/></g>
+      <rect x="92" y="76" width="60" height="18" rx="3" fill="var(--blk)"/>
+      <g fill="var(--silv)"><rect x="96" y="70" width="3" height="6"/><rect x="106" y="70" width="3" height="6"/><rect x="116" y="70" width="3" height="6"/><rect x="126" y="70" width="3" height="6"/><rect x="136" y="70" width="3" height="6"/><rect x="146" y="70" width="3" height="6"/></g>
+      <ellipse cx="70" cy="66" rx="9" ry="5" fill="var(--silv)"/>
+      <circle cx="176" cy="66" r="4" fill="var(--orange)"/><circle cx="176" cy="80" r="4" fill="#fff"/>
+      <rect x="60" y="94" width="12" height="12" rx="2" fill="var(--silv)"/>
+      <path d="M50 50h30v14M160 96h30" stroke="#fff" stroke-width="2" fill="none" opacity=".45"/>
+      <text x="112" y="60" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" text-anchor="middle">UNO R3</text>
+    </symbol>
+    <symbol id="ill-relay" viewBox="0 0 220 150">
+      <rect x="10" y="16" width="200" height="118" rx="10" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <g><rect x="118" y="26" width="42" height="30" rx="4" fill="var(--blue-deep)"/><rect x="124" y="32" width="30" height="4" fill="#fff"/><rect x="124" y="40" width="22" height="3" fill="var(--blue-100)"/>
+      <rect x="166" y="26" width="42" height="30" rx="4" fill="var(--blue-deep)"/><rect x="172" y="32" width="30" height="4" fill="#fff"/><rect x="172" y="40" width="22" height="3" fill="var(--blue-100)"/>
+      <rect x="118" y="62" width="42" height="30" rx="4" fill="var(--blue-deep)"/><rect x="124" y="68" width="30" height="4" fill="#fff"/><rect x="124" y="76" width="22" height="3" fill="var(--blue-100)"/>
+      <rect x="166" y="62" width="42" height="30" rx="4" fill="var(--blue-deep)"/><rect x="172" y="68" width="30" height="4" fill="#fff"/><rect x="172" y="76" width="22" height="3" fill="var(--blue-100)"/></g>
+      <rect x="118" y="100" width="90" height="18" rx="4" fill="var(--orange)" stroke="var(--orange-d)" stroke-width="2"/>
+      <g fill="var(--silv)"><circle cx="132" cy="109" r="4"/><circle cx="152" cy="109" r="4"/><circle cx="172" cy="109" r="4"/><circle cx="192" cy="109" r="4"/></g>
+      <g fill="var(--blk)"><rect x="26" y="30" width="52" height="13" rx="2"/><rect x="26" y="56" width="52" height="13" rx="2"/><rect x="26" y="82" width="52" height="13" rx="2"/></g>
+      <circle cx="96" cy="36" r="8" fill="var(--blk)"/><circle cx="96" cy="36" r="4" fill="var(--silv)"/><circle cx="96" cy="62" r="8" fill="var(--blk)"/><circle cx="96" cy="62" r="4" fill="var(--silv)"/>
+      <circle cx="40" cy="112" r="4" fill="var(--orange)"/><circle cx="56" cy="112" r="4" fill="#fff"/><circle cx="72" cy="112" r="4" fill="var(--orange)"/>
+      <rect x="16" y="14" width="26" height="14" rx="3" fill="var(--orange)"/>
+    </symbol>
+    <symbol id="ill-embouts" viewBox="0 0 220 150">
+      <rect x="14" y="12" width="192" height="126" rx="12" fill="var(--blk)"/>
+      <rect x="22" y="20" width="176" height="110" rx="8" fill="#2E343C"/>
+      <g fill="var(--silv)"><circle cx="46" cy="40" r="7"/><circle cx="70" cy="40" r="7"/><circle cx="94" cy="40" r="7"/><circle cx="118" cy="40" r="7"/><circle cx="142" cy="40" r="7"/><circle cx="166" cy="40" r="7"/><circle cx="46" cy="64" r="7"/><circle cx="70" cy="64" r="7"/><circle cx="94" cy="64" r="7"/><circle cx="118" cy="64" r="7"/><circle cx="142" cy="64" r="7"/><circle cx="166" cy="64" r="7"/><circle cx="46" cy="88" r="7"/><circle cx="70" cy="88" r="7"/><circle cx="94" cy="88" r="7"/><circle cx="118" cy="88" r="7"/><circle cx="142" cy="88" r="7"/><circle cx="166" cy="88" r="7"/></g>
+      <g fill="#2E343C"><circle cx="46" cy="40" r="2.6"/><circle cx="70" cy="40" r="2.6"/><circle cx="94" cy="40" r="2.6"/><circle cx="118" cy="40" r="2.6"/><circle cx="142" cy="40" r="2.6"/><circle cx="166" cy="40" r="2.6"/><circle cx="46" cy="64" r="2.6"/><circle cx="70" cy="64" r="2.6"/><circle cx="94" cy="64" r="2.6"/><circle cx="118" cy="64" r="2.6"/><circle cx="142" cy="64" r="2.6"/><circle cx="166" cy="64" r="2.6"/><circle cx="46" cy="88" r="2.6"/><circle cx="70" cy="88" r="2.6"/><circle cx="94" cy="88" r="2.6"/><circle cx="118" cy="88" r="2.6"/><circle cx="142" cy="88" r="2.6"/><circle cx="166" cy="88" r="2.6"/></g>
+      <rect x="36" y="104" width="86" height="16" rx="8" fill="#fff"/><rect x="44" y="107" width="30" height="10" rx="5" fill="var(--blk)"/><rect x="78" y="107" width="14" height="10" rx="5" fill="var(--orange)"/>
+      <rect x="132" y="104" width="44" height="16" rx="6" fill="var(--silv)"/><path d="M184 104l14 8-14 8z" fill="var(--silv-d)"/>
+    </symbol>
+    <symbol id="ill-soudure" viewBox="0 0 220 150">
+      <rect x="112" y="20" width="94" height="112" rx="12" fill="var(--orange)" stroke="var(--orange-d)" stroke-width="3"/>
+      <rect x="124" y="32" width="70" height="34" rx="5" fill="#DCE9FF" stroke="var(--silv-d)" stroke-width="2"/>
+      <path d="M136 56l6-14 6 14 6-14 6 14" stroke="var(--blk)" stroke-width="2.5" fill="none"/>
+      <circle cx="159" cy="92" r="17" fill="var(--blk)"/><path d="M159 80v12l8 6" stroke="#fff" stroke-width="2.5" fill="none"/>
+      <g fill="var(--blk)"><circle cx="132" cy="118" r="5"/><circle cx="148" cy="118" r="5"/><circle cx="164" cy="118" r="5"/><circle cx="180" cy="118" r="5"/></g>
+      <path d="M18 122 74 40" stroke="var(--blk)" stroke-width="11" stroke-linecap="round"/>
+      <path d="M40 90 62 58" stroke="var(--orange)" stroke-width="13" stroke-linecap="round"/>
+      <path d="M74 40 88 20" stroke="var(--silv)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M88 20l5-8" stroke="var(--blue)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="34" cy="42" r="20" fill="#fff" stroke="var(--silv)" stroke-width="3"/><circle cx="34" cy="42" r="9" fill="var(--blue)"/><circle cx="34" cy="42" r="3.5" fill="#fff"/>
+      <rect x="14" y="70" width="34" height="20" rx="4" fill="var(--blue-100)" stroke="var(--silv)" stroke-width="2"/>
+    </symbol>
+    <symbol id="ill-hcsr04" viewBox="0 0 220 150">
+      <rect x="20" y="40" width="180" height="72" rx="9" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <circle cx="62" cy="76" r="26" fill="var(--silv)" stroke="var(--silv-d)" stroke-width="3"/><circle cx="62" cy="76" r="14" fill="#8FA0B5"/><circle cx="62" cy="76" r="6" fill="#5B6B80"/>
+      <circle cx="158" cy="76" r="26" fill="var(--silv)" stroke="var(--silv-d)" stroke-width="3"/><circle cx="158" cy="76" r="14" fill="#8FA0B5"/><circle cx="158" cy="76" r="6" fill="#5B6B80"/>
+      <rect x="96" y="60" width="28" height="16" rx="3" fill="var(--blk)"/><rect x="96" y="84" width="28" height="10" rx="2" fill="var(--silv)"/>
+      <g fill="var(--orange)"><circle cx="36" cy="34" r="3"/><circle cx="48" cy="34" r="3"/><circle cx="60" cy="34" r="3"/><circle cx="72" cy="34" r="3"/></g>
+      <rect x="30" y="26" width="48" height="8" rx="2" fill="var(--blk)"/>
+    </symbol>
+    <symbol id="ill-lcd" viewBox="0 0 220 150">
+      <rect x="14" y="34" width="192" height="84" rx="8" fill="var(--blue-deep)" stroke="var(--blue-d)" stroke-width="3"/>
+      <rect x="30" y="48" width="160" height="56" rx="5" fill="#061C3D" stroke="#03112A" stroke-width="3"/>
+      <rect x="38" y="56" width="144" height="40" rx="3" fill="var(--blue)"/>
+      <g fill="var(--blue-100)" opacity=".85"><rect x="46" y="66" width="10" height="18"/><rect x="62" y="66" width="10" height="18"/><rect x="78" y="66" width="10" height="18"/><rect x="94" y="66" width="10" height="18"/><rect x="110" y="66" width="10" height="18"/><rect x="126" y="66" width="10" height="18"/><rect x="142" y="66" width="10" height="18"/><rect x="158" y="66" width="10" height="18"/></g>
+      <rect x="30" y="20" width="160" height="10" rx="2" fill="var(--blk)"/>
+      <g fill="var(--orange)"><circle cx="40" cy="25" r="2.4"/><circle cx="54" cy="25" r="2.4"/><circle cx="68" cy="25" r="2.4"/><circle cx="82" cy="25" r="2.4"/><circle cx="96" cy="25" r="2.4"/></g>
+      <circle cx="24" cy="42" r="4" fill="#fff"/><circle cx="196" cy="42" r="4" fill="#fff"/><circle cx="24" cy="110" r="4" fill="#fff"/><circle cx="196" cy="110" r="4" fill="#fff"/>
+    </symbol>
+    <symbol id="ill-servo" viewBox="0 0 220 150">
+      <rect x="52" y="52" width="116" height="52" rx="8" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <rect x="34" y="64" width="18" height="14" rx="3" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <rect x="168" y="64" width="18" height="14" rx="3" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <circle cx="82" cy="52" r="17" fill="#fff" stroke="var(--silv)" stroke-width="3"/><rect x="78" y="24" width="8" height="26" rx="4" fill="#fff" stroke="var(--silv)" stroke-width="2"/><circle cx="82" cy="52" r="5" fill="#8FA0B5"/>
+      <rect x="120" y="62" width="34" height="22" rx="3" fill="var(--blk)"/>
+      <path d="M52 104c-10 14-26 14-34 26" stroke="var(--orange)" stroke-width="4" fill="none"/>
+      <path d="M56 106c-6 16-20 18-26 30" stroke="var(--blue)" stroke-width="4" fill="none"/>
+      <path d="M60 108c-2 18-14 22-18 32" stroke="var(--blk)" stroke-width="4" fill="none"/>
+    </symbol>
+    <symbol id="ill-rfid" viewBox="0 0 220 150">
+      <rect x="18" y="30" width="120" height="92" rx="9" fill="var(--blue)" stroke="var(--blue-d)" stroke-width="3"/>
+      <g fill="none" stroke="#fff" stroke-width="3"><rect x="32" y="44" width="92" height="64" rx="8"/><rect x="42" y="54" width="72" height="44" rx="6"/><rect x="52" y="64" width="52" height="24" rx="4"/></g>
+      <rect x="66" y="68" width="24" height="16" rx="3" fill="var(--blk)"/>
+      <rect x="146" y="52" width="58" height="40" rx="6" fill="var(--blue-deep)" stroke="var(--blue-d)" stroke-width="3"/><circle cx="196" cy="58" r="4" fill="#fff"/>
+      <path d="M152 66h30M152 76h20" stroke="var(--blue-100)" stroke-width="3"/>
+      <circle cx="204" cy="44" r="8" fill="none" stroke="var(--silv-d)" stroke-width="3"/>
+    </symbol>
+    <symbol id="ill-bread" viewBox="0 0 220 150">
+      <rect x="24" y="24" width="172" height="102" rx="8" fill="#fff" stroke="var(--silv)" stroke-width="3"/>
+      <g fill="var(--silv-d)"><circle cx="44" cy="42" r="2.4"/><circle cx="58" cy="42" r="2.4"/><circle cx="72" cy="42" r="2.4"/><circle cx="86" cy="42" r="2.4"/><circle cx="100" cy="42" r="2.4"/><circle cx="114" cy="42" r="2.4"/><circle cx="128" cy="42" r="2.4"/><circle cx="142" cy="42" r="2.4"/><circle cx="156" cy="42" r="2.4"/><circle cx="170" cy="42" r="2.4"/><circle cx="44" cy="56" r="2.4"/><circle cx="58" cy="56" r="2.4"/><circle cx="72" cy="56" r="2.4"/><circle cx="86" cy="56" r="2.4"/><circle cx="100" cy="56" r="2.4"/><circle cx="114" cy="56" r="2.4"/><circle cx="128" cy="56" r="2.4"/><circle cx="142" cy="56" r="2.4"/><circle cx="156" cy="56" r="2.4"/><circle cx="170" cy="56" r="2.4"/><circle cx="44" cy="94" r="2.4"/><circle cx="58" cy="94" r="2.4"/><circle cx="72" cy="94" r="2.4"/><circle cx="86" cy="94" r="2.4"/><circle cx="100" cy="94" r="2.4"/><circle cx="114" cy="94" r="2.4"/><circle cx="128" cy="94" r="2.4"/><circle cx="142" cy="94" r="2.4"/><circle cx="156" cy="94" r="2.4"/><circle cx="170" cy="94" r="2.4"/><circle cx="44" cy="108" r="2.4"/><circle cx="58" cy="108" r="2.4"/><circle cx="72" cy="108" r="2.4"/><circle cx="86" cy="108" r="2.4"/><circle cx="100" cy="108" r="2.4"/><circle cx="114" cy="108" r="2.4"/><circle cx="128" cy="108" r="2.4"/><circle cx="142" cy="108" r="2.4"/><circle cx="156" cy="108" r="2.4"/><circle cx="170" cy="108" r="2.4"/></g>
+      <rect x="36" y="72" width="148" height="6" rx="3" fill="#DCE4EF"/>
+      <path d="M32 32h156" stroke="var(--orange)" stroke-width="3"/><path d="M32 118h156" stroke="var(--blue)" stroke-width="3"/>
+    </symbol>
+    <symbol id="ill-jumpers" viewBox="0 0 220 150">
+      <rect x="18" y="26" width="26" height="16" rx="3" fill="var(--blk)"/><rect x="176" y="108" width="26" height="16" rx="3" fill="var(--blk)"/>
+      <g fill="none" stroke-width="5" stroke-linecap="round"><path d="M44 32c50 0 60 82 132 84" stroke="var(--blue)"/><path d="M44 38c56 4 62 70 132 76" stroke="var(--orange)"/><path d="M44 44c62 8 64 58 132 68" stroke="var(--blue-deep)"/><path d="M44 50c68 12 66 46 132 60" stroke="var(--silv-d)"/><path d="M44 56c74 16 68 34 132 52" stroke="var(--blk)"/></g>
+    </symbol>
+    <symbol id="ill-leds" viewBox="0 0 220 150">
+      <path d="M40 62a16 16 0 0 1 32 0v18H40z" fill="var(--blue)"/><rect x="40" y="80" width="32" height="8" rx="3" fill="var(--blue-d)"/><path d="M48 88v34M64 88v28" stroke="var(--silv-d)" stroke-width="3"/>
+      <path d="M92 62a16 16 0 0 1 32 0v18H92z" fill="var(--orange)"/><rect x="92" y="80" width="32" height="8" rx="3" fill="var(--orange-d)"/><path d="M100 88v34M116 88v28" stroke="var(--silv-d)" stroke-width="3"/>
+      <path d="M144 62a16 16 0 0 1 32 0v18h-32z" fill="var(--blue-deep)"/><rect x="144" y="80" width="32" height="8" rx="3" fill="var(--blue-d)"/><path d="M152 88v34M168 88v28" stroke="var(--silv-d)" stroke-width="3"/>
+    </symbol>
+    <symbol id="ill-res" viewBox="0 0 220 150">
+      <g><path d="M20 45h30M170 45h30" stroke="var(--silv-d)" stroke-width="4"/><rect x="50" y="34" width="120" height="22" rx="11" fill="#fff" stroke="var(--silv)" stroke-width="2"/><rect x="68" y="34" width="9" height="22" fill="var(--blue)"/><rect x="88" y="34" width="9" height="22" fill="var(--blk)"/><rect x="108" y="34" width="9" height="22" fill="var(--orange)"/><rect x="140" y="34" width="9" height="22" fill="var(--silv-d)"/>
+      <path d="M20 82h30M170 82h30" stroke="var(--silv-d)" stroke-width="4"/><rect x="50" y="71" width="120" height="22" rx="11" fill="#fff" stroke="var(--silv)" stroke-width="2"/><rect x="68" y="71" width="9" height="22" fill="var(--orange)"/><rect x="88" y="71" width="9" height="22" fill="var(--blk)"/><rect x="108" y="71" width="9" height="22" fill="var(--blue)"/><rect x="140" y="71" width="9" height="22" fill="var(--silv-d)"/>
+      <path d="M20 119h30M170 119h30" stroke="var(--silv-d)" stroke-width="4"/><rect x="50" y="108" width="120" height="22" rx="11" fill="#fff" stroke="var(--silv)" stroke-width="2"/><rect x="68" y="108" width="9" height="22" fill="var(--blue-deep)"/><rect x="88" y="108" width="9" height="22" fill="var(--orange)"/><rect x="108" y="108" width="9" height="22" fill="var(--blk)"/><rect x="140" y="108" width="9" height="22" fill="var(--silv-d)"/></g>
+    </symbol>
+    <symbol id="ill-kit" viewBox="0 0 220 150">
+      <rect x="14" y="14" width="192" height="122" rx="12" fill="#fff" stroke="var(--silv)" stroke-width="3"/>
+      <rect x="26" y="26" width="168" height="98" rx="8" fill="#fff" stroke="var(--orange)" stroke-width="3"/>
+      <rect x="36" y="36" width="60" height="38" rx="4" fill="var(--blue)"/><rect x="42" y="42" width="20" height="12" rx="2" fill="var(--silv)"/><rect x="70" y="52" width="20" height="10" rx="2" fill="var(--blk)"/>
+      <g fill="var(--orange)"><path d="M140 55c8-14 26-14 30 0-12 2-18 6-30 0z"/><path d="M138 62c-14 8-8 26 6 26 0-12 2-18-6-26z"/><path d="M146 62c14 8 8 26-6 26 0-12-2-18 6-26z"/><circle cx="142" cy="62" r="6" fill="var(--orange-d)"/></g>
+      <rect x="36" y="84" width="46" height="30" rx="4" fill="var(--blue-deep)"/><rect x="42" y="90" width="34" height="18" rx="2" fill="#061C3D"/>
+      <g fill="var(--blk)"><rect x="100" y="86" width="14" height="26" rx="3"/><rect x="120" y="86" width="14" height="26" rx="3"/><rect x="140" y="86" width="14" height="26" rx="3"/><rect x="160" y="86" width="14" height="26" rx="3"/></g>
+      <text x="152" y="48" fill="var(--orange)" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" text-anchor="middle">KIT ULTIMATE</text>
+    </symbol>
+    <symbol id="ill-fan" viewBox="0 0 220 150">
+      <rect x="35" y="15" width="150" height="120" rx="14" fill="var(--blk)"/>
+      <circle cx="110" cy="75" r="52" fill="#2E343C"/>
+      <g fill="var(--silv)"><path d="M110 75c-6-30 8-44 26-40 6 16-6 32-26 40z"/><path d="M110 75c30-6 44 8 40 26-16 6-32-6-40-26z"/><path d="M110 75c6 30-8 44-26 40-6-16 6-32 26-40z"/><path d="M110 75c-30 6-44-8-40-26 16-6 32 6 40 26z"/></g>
+      <circle cx="110" cy="75" r="14" fill="var(--orange)"/>
+      <circle cx="48" cy="28" r="4" fill="#2E343C"/><circle cx="172" cy="28" r="4" fill="#2E343C"/><circle cx="48" cy="122" r="4" fill="#2E343C"/><circle cx="172" cy="122" r="4" fill="#2E343C"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAVBAR ================= -->
+<div class="nav-wrap">
+  <nav id="nav">
+    <a href="#" class="logo" aria-label="OhmLab accueil"><span class="logo-mark"><svg class="ic"><use href="#i-cpu"/></svg></span>Ohm<em>Lab</em></a>
+    <div class="nav-links">
+      <a href="#univers">Univers</a>
+      <a href="#zones">Zones</a>
+      <a href="#deals">Deals</a>
+      <a href="boutique.html">Catalogue</a>
+      <a href="#projets">Projets</a>
+      <a href="#livre" style="color:var(--orange)"> Guide</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <label class="nav-search"><svg class="ic"><use href="#i-search"/></svg><input id="search" type="search" placeholder="Rechercher…" aria-label="Recherche"></label>
+    <div class="nav-acts">
+      <button class="icon-btn" id="wish-btn" aria-label="Favoris"><svg class="ic"><use href="#i-heart"/></svg><span class="count-badge" id="wish-count">0</span></button>
+      <button class="icon-btn" data-cart-open aria-label="Panier"><svg class="ic"><use href="#i-cart"/></svg><span class="count-badge" id="cart-count">0</span></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
+  </nav>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+  <label class="nav-search"><svg class="ic"><use href="#i-search"/></svg><input id="search-m" type="search" placeholder="Rechercher un composant…"></label>
+  <a href="#univers">Univers</a><a href="#zones">Zones spéciales</a><a href="#deals">Deals flash</a><a href="boutique.html">Catalogue</a><a href="#projets">Projets</a><a href="#faq">FAQ</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="accueil">
+  <div class="hero-glow g1"></div><div class="hero-glow g2"></div>
+  <div class="container hero-grid">
+    <div class="hero-txt reveal in">
+      <span class="badge-label hero-badge"><svg class="ic sm"><use href="#i-zap"/></svg> Nouveau : kit Ultimate R3 en stock</span>
+      <h1>Construisez, testez, soudez.
+        <span class="rotowrap">Votre projet <span id="rotoword">Arduino</span></span>
+      </h1>
+      <p class="lead">Cartes Arduino, capteurs, composants et outillage de précision sélectionnés par des makers, pour des makers. Tutoriels inclus dans chaque commande.</p>
+      <div class="hero-ctas">
+        <a href="#produits" class="btn btn-primary">Explorer la boutique <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+        <a href="#zones" class="btn btn-ghost"><svg class="ic sm"><use href="#i-box"/></svg> Voir le kit Ultimate</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><svg class="ic"><use href="#i-box"/></svg><div><b>1 200+</b><small>références en stock</small></div></div>
+        <div class="hstat"><svg class="ic" style="color:var(--orange)"><use href="#i-star"/></svg><div><b>4,9 / 5</b><small>sur 4 800 avis</small></div></div>
+        <div class="hstat"><svg class="ic" style="color:var(--blue)"><use href="#i-truck"/></svg><div><b>24 h</b><small>expédition chrono</small></div></div>
+      </div>
+    </div>
+    <div class="hero-vis" id="hero-vis">
+      <div class="orbit"></div><div class="orbit o2"></div>
+      <div class="hv-main" data-depth="10">
+        <div class="hv-glow"></div>
+        <figure class="floaty">
+          <div class="ph-wrap"><img data-img="uno" alt="Carte Arduino Uno R3"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-uno"/></svg></div>
+        </figure>
+      </div>
+      <span class="spec-tag st-1 floaty f3"><span class="dot"></span> ATmega328P</span>
+      <span class="spec-tag st-2 floaty f2"><span class="dot"></span> 5V · 16 MHz</span>
+      <span class="spec-tag st-3 floaty f4"><span class="dot"></span> 14 E/S numériques</span>
+      <div class="hv-chip hc-1" data-depth="26">
+        <figure class="hv-card floaty f2"><div class="ph-wrap"><img data-img="kit" alt="Kit Arduino"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-kit"/></svg></div><figcaption><b>Kit Ultimate</b><span>58 990 FCFA</span></figcaption></figure>
+      </div>
+      <div class="hv-chip hc-2" data-depth="20">
+        <figure class="hv-card floaty f3"><div class="ph-wrap"><img data-img="soudure" alt="Trousse soudure"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-soudure"/></svg></div><figcaption><b>Station soudure</b><span>26 180 FCFA</span></figcaption></figure>
+      </div>
+      <div class="hv-chip hc-3" data-depth="32">
+        <figure class="hv-card floaty f4"><div class="ph-wrap"><img data-img="relay" alt="Module 4 relais SRD-12V"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-relay"/></svg></div><figcaption><b>Relais x4</b></figcaption></figure>
+      </div>
+      <div class="hv-chip hc-4" data-depth="16">
+        <figure class="hv-card floaty f5"><div class="ph-wrap"><img data-img="hcsr04" alt="Capteur ultrason HC-SR04"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-hcsr04"/></svg></div><figcaption><b>HC-SR04</b></figcaption></figure>
+      </div>
+      <div class="hv-bubble hb-1 floaty f3"><svg class="ic lg"><use href="#i-zap"/></svg></div>
+      <div class="hv-bubble hb-2 floaty f2"><svg class="ic lg"><use href="#i-cpu"/></svg></div>
+      <div class="hv-bubble hb-3 floaty f4"><svg class="ic lg"><use href="#i-plug"/></svg></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span><svg class="ic"><use href="#i-cpu"/></svg> Cartes Arduino</span><span><svg class="ic"><use href="#i-radio"/></svg> Capteurs</span><span><svg class="ic"><use href="#i-board"/></svg> Afficheurs</span><span><svg class="ic"><use href="#i-refresh"/></svg> Moteurs & servos</span><span><svg class="ic"><use href="#i-wrench"/></svg> Outillage précis</span><span><svg class="ic"><use href="#i-solder"/></svg> Soudure & stations</span><span><svg class="ic"><use href="#i-box"/></svg> Kits complets</span><span><svg class="ic"><use href="#i-plug"/></svg> Connectique</span>
+    <span><svg class="ic"><use href="#i-cpu"/></svg> Cartes Arduino</span><span><svg class="ic"><use href="#i-radio"/></svg> Capteurs</span><span><svg class="ic"><use href="#i-board"/></svg> Afficheurs</span><span><svg class="ic"><use href="#i-refresh"/></svg> Moteurs & servos</span><span><svg class="ic"><use href="#i-wrench"/></svg> Outillage précis</span><span><svg class="ic"><use href="#i-solder"/></svg> Soudure & stations</span><span><svg class="ic"><use href="#i-box"/></svg> Kits complets</span><span><svg class="ic"><use href="#i-plug"/></svg> Connectique</span>
+  </div>
+</div>
+
+<!-- ================= UNIVERS ================= -->
+<section class="unis" id="univers">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-cpu"/></svg> Nos univers</span>
+      <h2>Trois terrains de jeu <span class="grad">en lévitation</span></h2>
+      <p>Chaque univers regroupe le matériel testé et approuvé par notre atelier : compatible, documenté, prêt à brancher.</p>
+    </div>
+    <div class="uni-grid">
+      <article class="uni-card reveal" style="--uc:var(--blue);--uc-soft:var(--blue-50)">
+        <div class="uni-art"><span class="uni-tag"><svg class="ic"><use href="#i-cpu"/></svg></span>
+          <div class="ill-wrap ph-wrap"><img data-img="uno" alt="" ><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-uno"/></svg></div>
+        </div>
+        <h3>Univers Arduino</h3>
+        <p>Cartes officielles et compatibles Uno R3, Mega, Nano, shields d'extension et modules prêts à clipser pour prototyper sans friction.</p>
+        <div class="uni-meta"><span><svg class="ic sm"><use href="#i-box"/></svg> 120 références</span><a href="#produits" class="uni-link" data-goto="cartes">Explorer <svg class="ic sm"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="uni-card reveal" style="--uc:var(--blue-deep);--uc-soft:var(--blue-100)">
+        <div class="uni-art"><span class="uni-tag"><svg class="ic"><use href="#i-chip"/></svg></span>
+          <div class="ph-wrap"><img data-img="bread" alt="Breadboard 830 pts"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-bread"/></svg></div>
+        </div>
+        <h3>Univers Composants</h3>
+        <p>Résistances, LEDs, condensateurs, breadboards, jumpers et capteurs : tout le détail qui fait la différence entre un montage et un projet.</p>
+        <div class="uni-meta"><span><svg class="ic sm"><use href="#i-box"/></svg> 640 références</span><a href="#produits" class="uni-link" data-goto="composants">Explorer <svg class="ic sm"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="uni-card reveal" style="--uc:var(--orange);--uc-soft:var(--orange-100)">
+        <div class="uni-art"><span class="uni-tag"><svg class="ic"><use href="#i-wrench"/></svg></span>
+          <div class="ill-wrap ph-wrap"><img data-img="soudure" alt=""><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-embouts"/></svg></div>
+        </div>
+        <h3>Univers Outillage</h3>
+        <p>Trousses de précision 115 embouts, stations de soudure, multimètres et accessoires : intervenez proprement, partout, tout le temps.</p>
+        <div class="uni-meta"><span><svg class="ic sm"><use href="#i-box"/></svg> 85 références</span><a href="#produits" class="uni-link" data-goto="outillage">Explorer <svg class="ic sm"><use href="#i-arrow"/></svg></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ANATOMIE ARDUINO ================= -->
+<section class="anatomy" id="anatomie">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-chip"/></svg> Anatomie</span>
+      <h2>La carte Arduino Uno R3 <span class="grad">décortiquée</span></h2>
+      <p>Chaque composant de la carte Arduino Uno R3 identifié et légendé.</p>
+    </div>
+    <div class="anatomy-stage reveal">
+      <div class="anatomy-img-wrap">
+        <img src="assets/arduino-uno-annote.jpg" alt="Schéma annoté Arduino Uno R3" class="anatomy-img-full" draggable="false">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÉTAPES ================= -->
+<section class="steps">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--orange-100);color:var(--orange)"><svg class="ic sm"><use href="#i-refresh"/></svg> Comment ça marche</span>
+      <h2>De l'idée au montage en <span class="grad">4 temps</span></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal" style="--sc:var(--blue)"><span class="step-n"><svg class="ic lg"><use href="#i-search"/></svg><b>1</b></span><h4>Choisissez</h4><p>Filtres par univers, recherche instantanée et fiches techniques complètes.</p></div>
+      <div class="step reveal" style="--sc:var(--orange)"><span class="step-n"><svg class="ic lg"><use href="#i-truck"/></svg><b>2</b></span><h4>Recevez</h4><p>Expédition sous 24 h, colis antistatique suivi jusqu'à votre porte.</p></div>
+      <div class="step reveal" style="--sc:var(--blue-deep)"><span class="step-n"><svg class="ic lg"><use href="#i-wrench"/></svg><b>3</b></span><h4>Assemblez</h4><p>Schémas Fritzing, code commenté et vidéo pas-à-pas inclus.</p></div>
+      <div class="step reveal" style="--sc:var(--orange)"><span class="step-n"><svg class="ic lg"><use href="#i-grad"/></svg><b>4</b></span><h4>Progressez</h4><p>Rejoignez le labo : 12 000 makers partagent leurs variantes de projets.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZONES ================= -->
+<section class="zones" id="zones">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--orange-100);color:var(--orange)"><svg class="ic sm"><use href="#i-zap"/></svg> Zones spéciales</span>
+      <h2>Huit espaces pensés pour <span class="grad">chaque projet</span></h2>
+      <p>Kits complets, capteurs, soudure, promos limitées, seconde main, tutoriels, communauté et comptes PRO.</p>
+    </div>
+    <div class="bento">
+      <article class="zone zone-kit reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-box"/></svg></span>
+        <h3>Kit Ultimate Uno R3<br>la mallette complète</h3>
+        <p>Le coffret ultime pour démarrer ou compléter votre atelier : plus de 60 pièces organisées dans une mallette rigide sérigraphiée.</p>
+        <ul class="kit-list">
+          <li><svg class="ic"><use href="#i-check"/></svg> Carte Uno R3 + câble USB</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Breadboard 830 pts + jumpers</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Écran LCD 1602, servos & capteurs</li>
+          <li><svg class="ic"><use href="#i-check"/></svg> Livret de 12 projets guidés</li>
+        </ul>
+        <div class="kit-price"><b>58 990 FCFA</b><s>72 090 FCFA</s><span>-18 %</span></div>
+        <button class="btn btn-orange" style="margin-bottom:200px;position:relative;z-index:2" data-add data-id="kit" data-name="Kit Ultimate Uno R3 (mallette)" data-price="89.90" data-ill="ill-kit" data-img="kit">Ajouter au panier <svg class="ic sm"><use href="#i-cart"/></svg></button>
+        <div class="kit-img-wrap ph-wrap floaty f2"><img data-img="kit" alt="Mallette kit Arduino Uno R3 Starter Kit"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-kit"/></svg></div>
+        <span class="kit-tags kt-1 floaty f3">60+ PIÈCES</span>
+        <span class="kit-tags kt-2 floaty f5">MALLETTE INCLUSE</span>
+      </article>
+
+      <article class="zone zone-cap reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-radio"/></svg></span>
+        <h3>Capteurs & mesure</h3>
+        <p>Ultrason, RFID, température, humidité, mouvement : donnez des sens à vos montages avec des modules calibrés en atelier.</p>
+        <div class="cap-row">
+          <figure><div class="ph-wrap" style="width:100%"><img data-img="hcsr04" alt="HC-SR04"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-hcsr04"/></svg></div></figure>
+          <figure><div class="ph-wrap" style="width:100%"><img data-img="rfid" alt="RFID RC522"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-rfid"/></svg></div></figure>
+          <figure><div class="ph-wrap" style="width:100%"><img data-img="leds" alt="LEDs assorties"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-leds"/></svg></div></figure>
+        </div>
+        <a href="#produits" class="zone-link" style="color:var(--blue)" data-goto="capteurs">Voir les capteurs <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="zone zone-sou reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-solder"/></svg></span>
+        <h3>Station & soudure</h3>
+        <p>Le poste complet dans une trousse nomade.</p>
+        <div class="ph-wrap sou-img" style="height:200px;display:flex;align-items:center;justify-content:center"><img data-img="soudure" alt="Trousse soudure 20 pièces"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-soudure"/></svg></div>
+        <div class="sou-feats"><span>Fer 50 W</span><span>Étain 0,8 mm</span><span>Multimètre</span></div>
+        <a href="#produits" class="zone-link" style="color:var(--orange)" data-goto="outillage">S'équiper <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="zone zone-promo reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-percent"/></svg></span>
+        <h3>Semaine Maker</h3>
+        <p>-20 % sur tout l'univers outillage.</p>
+        <div class="cd">
+          <div class="cd-box"><b id="cd-d">00</b><small>jours</small></div>
+          <div class="cd-box"><b id="cd-h">00</b><small>heures</small></div>
+          <div class="cd-box"><b id="cd-m">00</b><small>min</small></div>
+          <div class="cd-box"><b id="cd-s">00</b><small>sec</small></div>
+        </div>
+        <span class="promo-code"><svg class="ic sm"><use href="#i-lock"/></svg> MAKER20</span>
+      </article>
+
+      <article class="zone zone-tuto reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-grad"/></svg></span>
+        <h3>Tutoriels & projets guidés</h3>
+        <p>Chaque commande débloque nos fiches pas-à-pas : schémas, code commenté et vidéos pour progresser montage après montage.</p>
+        <div class="tuto-pills"><span><svg class="ic"><use href="#i-play"/></svg> 12 vidéos</span><span><svg class="ic"><use href="#i-board"/></svg> Schémas Fritzing</span><span><svg class="ic"><use href="#i-chip"/></svg> Code commenté</span></div>
+        <a href="#projets" class="zone-link" style="color:var(--blue-deep)">Découvrir le labo <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="zone zone-pro reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-shield"/></svg></span>
+        <h3>Comptes PRO & éducation</h3>
+        <p>Devis en 24 h, facturation adaptée, lots classe et tarifs dégressifs pour écoles, clubs et entreprises.</p>
+        <div class="pro-perks"><div><svg class="ic"><use href="#i-check"/></svg> Devis 24 h</div><div><svg class="ic"><use href="#i-check"/></svg> Tarifs dégressifs</div><div><svg class="ic"><use href="#i-check"/></svg> Lots classe</div></div>
+        <a href="#contact" class="zone-link" style="color:var(--orange)">Nous contacter <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="zone zone-recond reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-refresh"/></svg></span>
+        <h3>Seconde main & reconditionné</h3>
+        <p>Matériel testé en atelier, remis à neuf et garanti 1 an : l'occasion propre pour petits budgets et grands projets.</p>
+        <div class="recond-bar"><b>-40 %</b><div><small>en moyenne vs prix neuf</small><small>34 articles disponibles cette semaine</small></div></div>
+        <a href="#produits" class="zone-link" style="color:var(--blue)">Voir les arrivages <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="zone zone-comm reveal">
+        <span class="zone-ico"><svg class="ic lg"><use href="#i-users"/></svg></span>
+        <h3>Communauté & lives hebdo</h3>
+        <p>Un Discord vivant, un live soudure chaque jeudi soir et des défis mensuels dotés de kits complets.</p>
+        <div class="comm-avs">
+          <span style="background:var(--blue)">LM</span><span style="background:var(--orange)">KB</span><span style="background:var(--blue-deep)">SR</span><span style="background:var(--orange-d)">TA</span><span class="more">+12k</span>
+        </div>
+        <a href="#avis" class="zone-link" style="color:var(--orange-d)">Rejoindre le labo <svg class="ic sm"><use href="#i-arrow"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEALS FLASH ================= -->
+<section class="deals" id="deals">
+  <div class="container">
+    <div class="deals-head reveal">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="badge-label" style="background:var(--orange-100);color:var(--orange)"><svg class="ic sm"><use href="#i-zap"/></svg> Deals flash</span>
+        <h2>Stocks limités, <span class="grad">prix cassés</span></h2>
+      </div>
+      <div class="deals-nav">
+        <button id="deal-prev" aria-label="Précédent"><svg class="ic"><use href="#i-left"/></svg></button>
+        <button id="deal-next" aria-label="Suivant"><svg class="ic"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+    <div class="deal-track" id="deal-track">
+      <article class="deal reveal"><span class="deal-off">-30 %</span>
+        <div class="ph-wrap"><img data-img="uno" alt="Carte Arduino Uno R3"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-uno"/></svg></div>
+        <h4>Carte Uno R3 (lot de 2)</h4>
+        <div class="deal-prices"><b>22 890 FCFA</b><s>32 690 FCFA</s></div>
+        <div class="stock"><i data-w="72"></i></div><small>72 % du stock restant</small>
+        <button class="add-btn" data-add data-id="uno2" data-name="Carte Uno R3 (lot de 2)" data-price="34.90" data-ill="ill-uno" data-img="uno" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+      <article class="deal reveal"><span class="deal-off">-25 %</span>
+        <div class="ph-wrap"><img data-img="hcsr04" alt="Capteur ultrason HC-SR04"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-hcsr04"/></svg></div>
+        <h4>HC-SR04 (lot de 3)</h4>
+        <div class="deal-prices"><b>5 840 FCFA</b><s>7 680 FCFA</s></div>
+        <div class="stock"><i data-w="41"></i></div><small>41 % du stock restant</small>
+        <button class="add-btn" data-add data-id="hc3" data-name="HC-SR04 (lot de 3)" data-price="8.90" data-ill="ill-hcsr04" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+      <article class="deal reveal"><span class="deal-off">-20 %</span>
+        <div class="ph-wrap"><img data-img="soudure" alt=""><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-soudure"/></svg></div>
+        <h4>Station soudure 20 pcs</h4>
+        <div class="deal-prices"><b>24 600 FCFA</b><s>30 770 FCFA</s></div>
+        <div class="stock"><i data-w="18"></i></div><small>Plus que 18 % — vite !</small>
+        <button class="add-btn" data-add data-id="soudure" data-name="Station soudure 20 pcs + multimètre" data-price="37.50" data-ill="ill-soudure" data-img="soudure" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+      <article class="deal reveal"><span class="deal-off">-35 %</span>
+        <div class="ph-wrap"><img data-img="servo" alt="Servo moteur SG90"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-servo"/></svg></div>
+        <h4>Servos SG90 (lot de 4)</h4>
+        <div class="deal-prices"><b>11 090 FCFA</b><s>17 060 FCFA</s></div>
+        <div class="stock"><i data-w="55"></i></div><small>55 % du stock restant</small>
+        <button class="add-btn" data-add data-id="servo4" data-name="Servos SG90 (lot de 4)" data-price="16.90" data-ill="ill-servo" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+      <article class="deal reveal"><span class="deal-off">-22 %</span>
+        <div class="ph-wrap"><img data-img="lcd" alt="Écran LCD 1602 I2C"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-lcd"/></svg></div>
+        <h4>LCD 1602 I2C (lot de 2)</h4>
+        <div class="deal-prices"><b>9 120 FCFA</b><s>11 680 FCFA</s></div>
+        <div class="stock"><i data-w="63"></i></div><small>63 % du stock restant</small>
+        <button class="add-btn" data-add data-id="lcd2" data-name="LCD 1602 I2C (lot de 2)" data-price="13.90" data-ill="ill-lcd" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+      <article class="deal reveal"><span class="deal-off">-40 %</span>
+        <div class="ph-wrap"><img data-img="fan" alt="Ventilateur 4010 5V"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-fan"/></svg></div>
+        <h4>Ventilateur 4010 5V</h4>
+        <div class="deal-prices"><b>1 900 FCFA</b><s>3 215 FCFA</s></div>
+        <div class="stock"><i data-w="9"></i></div><small>Plus que 9 % — ultime !</small>
+        <button class="add-btn" data-add data-id="fan" data-name="Ventilateur 4010 5V" data-price="2.90" data-ill="ill-fan" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUITS ================= -->
+<section class="products" id="produits">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-box"/></svg> Catalogue</span>
+      <h2>Sélection populaire de <span class="grad">la semaine</span></h2>
+      <p>Les références les plus ajoutées au panier par la communauté maker ces 7 derniers jours.</p>
+    </div>
+    <div class="tabs reveal" id="tabs">
+      <button class="tab active" data-filter="tous">Tous</button>
+      <button class="tab" data-filter="cartes">Cartes & modules</button>
+      <button class="tab" data-filter="capteurs">Capteurs</button>
+      <button class="tab" data-filter="composants">Composants</button>
+      <button class="tab" data-filter="affichage">Affichage</button>
+      <button class="tab" data-filter="moteurs">Moteurs</button>
+      <button class="tab" data-filter="outillage">Outillage</button>
+      <button class="tab" data-filter="kits">Kits</button>
+    </div>
+    <div class="p-grid" id="p-grid">
+      <article class="p-card reveal" data-cat="cartes" data-name="Carte Arduino Uno R3">
+        <div class="p-art"><span class="p-badge b-best">Best-seller</span>
+          <button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="uno" alt="Carte Arduino Uno R3"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-uno"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Cartes & modules</span><h4 class="p-name">Carte Arduino Uno R3</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,9 (312)</div>
+          <div class="p-foot"><span class="p-price"><b>23 215 FCFA</b></span><button class="add-btn" data-add data-id="uno" data-name="Carte Arduino Uno R3" data-price="24.90" data-ill="ill-uno" data-img="uno" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="kits" data-name="Kit Ultimate Uno R3 mallette">
+        <div class="p-art"><span class="p-badge b-promo">-18 %</span>
+          <button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="kit" alt="Kit Arduino mallette"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-kit"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Kits</span><h4 class="p-name">Kit Ultimate Uno R3 (mallette)</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,8 (198)</div>
+          <div class="p-foot"><span class="p-price"><b>58 990 FCFA</b><s>72 090 FCFA</s></span><button class="add-btn" data-add data-id="kit" data-name="Kit Ultimate Uno R3 (mallette)" data-price="89.90" data-ill="ill-kit" data-img="kit" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="cartes" data-name="Module 4 relais SRD-12V">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="relay" alt="Module 4 relais SRD-12V"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-relay"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Cartes & modules</span><h4 class="p-name">Module 4 relais SRD-12V</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic off"><use href="#i-star"/></svg></span> 4,6 (87)</div>
+          <div class="p-foot"><span class="p-price"><b>8 200 FCFA</b></span><button class="add-btn" data-add data-id="relay" data-name="Module 4 relais SRD-12V" data-price="12.50" data-ill="ill-relay" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="outillage" data-name="Trousse 115 embouts précision">
+        <div class="p-art"><span class="p-badge b-new">Nouveau</span>
+          <button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="embouts" alt="Trousse 115 embouts précision"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-embouts"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Outillage</span><h4 class="p-name">Trousse 115 embouts précision</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,9 (154)</div>
+          <div class="p-foot"><span class="p-price"><b>19 620 FCFA</b></span><button class="add-btn" data-add data-id="embouts" data-name="Trousse 115 embouts précision" data-price="29.90" data-ill="ill-embouts" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="outillage" data-name="Station soudure 20 pcs multimètre">
+        <div class="p-art"><span class="p-badge b-promo">-15 %</span>
+          <button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="soudure" alt="Station soudure"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-soudure"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Outillage</span><h4 class="p-name">Station soudure 20 pcs + multimètre</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic off"><use href="#i-star"/></svg></span> 4,7 (96)</div>
+          <div class="p-foot"><span class="p-price"><b>26 180 FCFA</b><s>30 770 FCFA</s></span><button class="add-btn" data-add data-id="soudure" data-name="Station soudure 20 pcs + multimètre" data-price="39.90" data-ill="ill-soudure" data-img="soudure" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="capteurs" data-name="Capteur ultrason HC-SR04">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="hcsr04" alt="Capteur ultrason HC-SR04"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-hcsr04"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Capteurs</span><h4 class="p-name">Capteur ultrason HC-SR04</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,8 (421)</div>
+          <div class="p-foot"><span class="p-price"><b>2 560 FCFA</b></span><button class="add-btn" data-add data-id="hcsr04" data-name="Capteur ultrason HC-SR04" data-price="3.90" data-ill="ill-hcsr04" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="affichage" data-name="Écran LCD 1602 I2C">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="lcd" alt="Écran LCD 1602 I2C"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-lcd"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Affichage</span><h4 class="p-name">Écran LCD 1602 I2C</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic off"><use href="#i-star"/></svg></span> 4,6 (203)</div>
+          <div class="p-foot"><span class="p-price"><b>5 840 FCFA</b></span><button class="add-btn" data-add data-id="lcd" data-name="Écran LCD 1602 I2C" data-price="8.90" data-ill="ill-lcd" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="moteurs" data-name="Servo moteur SG90">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="servo" alt="Servo moteur SG90"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-servo"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Moteurs</span><h4 class="p-name">Servo moteur SG90</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,8 (267)</div>
+          <div class="p-foot"><span class="p-price"><b>4 265 FCFA</b></span><button class="add-btn" data-add data-id="servo" data-name="Servo moteur SG90" data-price="6.50" data-ill="ill-servo" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="capteurs" data-name="Module RFID RC522 badge">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="rfid" alt="Module RFID RC522"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-rfid"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Capteurs</span><h4 class="p-name">Module RFID RC522 + badge</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic off"><use href="#i-star"/></svg></span> 4,5 (142)</div>
+          <div class="p-foot"><span class="p-price"><b>3 870 FCFA</b></span><button class="add-btn" data-add data-id="rfid" data-name="Module RFID RC522 + badge" data-price="5.90" data-ill="ill-rfid" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="composants" data-name="Breadboard 830 pts jumpers">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="bread" alt="Breadboard 830 pts"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-bread"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Composants</span><h4 class="p-name">Breadboard 830 pts + jumpers</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,9 (388)</div>
+          <div class="p-foot"><span class="p-price"><b>5 185 FCFA</b></span><button class="add-btn" data-add data-id="bread" data-name="Breadboard 830 pts + jumpers" data-price="7.90" data-ill="ill-bread" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="composants" data-name="Pack 30 LEDs assorties">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="leds" alt="Pack 30 LEDs assorties"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-leds"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Composants</span><h4 class="p-name">Pack 30 LEDs assorties</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic off"><use href="#i-star"/></svg></span> 4,7 (176)</div>
+          <div class="p-foot"><span class="p-price"><b>2 952 FCFA</b></span><button class="add-btn" data-add data-id="leds" data-name="Pack 30 LEDs assorties" data-price="4.50" data-ill="ill-leds" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+      <article class="p-card reveal" data-cat="composants" data-name="Kit 100 résistances 1/4W">
+        <div class="p-art"><button class="p-wish" aria-label="Favori"><svg class="ic sm"><use href="#i-heart"/></svg></button>
+          <div class="ph-wrap"><img data-img="res" alt="Kit 100 résistances"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-res"/></svg></div></div>
+        <div class="p-body"><span class="p-cat">Composants</span><h4 class="p-name">Kit 100 résistances 1/4W</h4>
+          <div class="p-rate"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span> 4,8 (231)</div>
+          <div class="p-foot"><span class="p-price"><b>3 870 FCFA</b></span><button class="add-btn" data-add data-id="res" data-name="Kit 100 résistances 1/4W" data-price="5.90" data-ill="ill-res" aria-label="Ajouter"><svg class="ic"><use href="#i-cart"/></svg></button></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJETS ================= -->
+<section class="projets" id="projets" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-grad"/></svg> Le labo</span>
+      <h2>Projets guidés <span class="grad">pas à pas</span></h2>
+      <p>Chaque tutoriel liste exactement le matériel nécessaire : un clic et le panier se remplit tout seul.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <div class="proj-art" style="background:var(--blue-50)"><div class="ph-wrap"><img data-img="hcsr04" alt="Capteur ultrason HC-SR04"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-hcsr04"/></svg></div></div>
+        <div class="proj-body"><div class="proj-tags"><span class="t-easy">Débutant</span><span class="t-time">1 h 30</span></div>
+          <h4>Radar de recul à ultrasons</h4><p>Buzzers progressifs et afficheur 7 segments pour visualiser les distances.</p>
+          <a href="#produits" class="proj-link">Tutoriel + matériel <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-art" style="background:var(--orange-100)"><div class="ph-wrap"><img data-img="rfid" alt="Module RFID RC522"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-rfid"/></svg></div></div>
+        <div class="proj-body"><div class="proj-tags"><span class="t-mid">Intermédiaire</span><span class="t-time">3 h</span></div>
+          <h4>Serrure RFID connectée</h4><p>Contrôle d'accès par badge avec relais, EEPROM et journal serial.</p>
+          <a href="#produits" class="proj-link">Tutoriel + matériel <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-art" style="background:var(--blue-100)"><div class="ph-wrap"><img data-img="lcd" alt="Écran LCD 1602 I2C"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-lcd"/></svg></div></div>
+        <div class="proj-body"><div class="proj-tags"><span class="t-easy">Débutant</span><span class="t-time">2 h</span></div>
+          <h4>Station météo LCD</h4><p>Température, humidité et pression affichées sur LCD 1602 I2C.</p>
+          <a href="#produits" class="proj-link">Tutoriel + matériel <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-art" style="background:var(--orange-100)"><div class="ph-wrap"><img data-img="servo" alt="Servo moteur SG90"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-servo"/></svg></div></div>
+        <div class="proj-body"><div class="proj-tags"><span class="t-mid">Intermédiaire</span><span class="t-time">4 h</span></div>
+          <h4>Bras robotisé 3 axes</h4><p>Trois servos, un joystick et un mode enregistrement de séquences.</p>
+          <a href="#produits" class="proj-link">Tutoriel + matériel <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat reveal"><span class="zone-ico"><svg class="ic lg"><use href="#i-box"/></svg></span><div><b><span class="num" data-target="1200">0</span>+</b><small>références en stock permanent</small></div></div>
+    <div class="stat reveal"><span class="zone-ico"><svg class="ic lg"><use href="#i-heart"/></svg></span><div><b><span class="num" data-target="4800">0</span></b><small>makers clients fidèles</small></div></div>
+    <div class="stat reveal"><span class="zone-ico"><svg class="ic lg"><use href="#i-truck"/></svg></span><div><b><span class="num" data-target="98">0</span> %</b><small>commandes expédiées en 24 h</small></div></div>
+    <div class="stat reveal"><span class="zone-ico"><svg class="ic lg"><use href="#i-star"/></svg></span><div><b>4,9 / 5</b><small>note moyenne vérifiée</small></div></div>
+  </div>
+</section>
+
+<!-- ================= COMPAT ================= -->
+<section class="compat">
+  <div class="container">
+    <div class="sec-head center reveal" style="margin-bottom:34px">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-plug"/></svg> Écosystèmes compatibles</span>
+      <h2>Un seul panier, <span class="grad">toutes vos plateformes</span></h2>
+    </div>
+    <div class="compat-list reveal">
+      <span>Arduino</span><span>ESP32</span><span>ESP8266</span><span>Raspberry Pi</span><span>STM32</span><span>Micro:bit</span><span>LoRa</span><span>RP2040</span><span>LilyPad</span><span>Teensy</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVANTAGES ================= -->
+<section class="perks" id="avantages" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--orange-100);color:var(--orange)"><svg class="ic sm"><use href="#i-shield"/></svg> Nos engagements</span>
+      <h2>Acheter serein, <span class="grad">bricoler tranquille</span></h2>
+    </div>
+    <div class="perks-grid">
+      <div class="perk reveal" style="--pc:var(--blue);--pcs:var(--blue-100)"><span class="zone-ico"><svg class="ic lg"><use href="#i-truck"/></svg></span><h4>Livraison 48 h chrono</h4><p>Expédition sous 24 h ouvrées, suivi en temps réel et offerte dès 32 150 FCFA d'achat.</p></div>
+      <div class="perk reveal" style="--pc:var(--blue-deep);--pcs:var(--blue-100)"><span class="zone-ico"><svg class="ic lg"><use href="#i-lock"/></svg></span><h4>Paiement sécurisé</h4><p>Transactions chiffrées, CB, Visa, Mastercard et PayPal, sans stockage de données.</p></div>
+      <div class="perk reveal" style="--pc:var(--orange);--pcs:var(--orange-100)"><span class="zone-ico"><svg class="ic lg"><use href="#i-shield"/></svg></span><h4>Garantie 2 ans</h4><p>Chaque composant est testé en atelier : remplacement immédiat en cas de défaut.</p></div>
+      <div class="perk reveal" style="--pc:var(--blue);--pcs:var(--blue-100)"><span class="zone-ico"><svg class="ic lg"><use href="#i-headset"/></svg></span><h4>Support maker 7j/7</h4><p>Des passionnés répondent à vos questions de montage sous 24 h, schémas à l'appui.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVIS ================= -->
+<section class="reviews" id="avis" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--blue-100);color:var(--blue)"><svg class="ic sm"><use href="#i-star"/></svg> Avis vérifiés</span>
+      <h2>La communauté <span class="grad">en parle mieux</span></h2>
+    </div>
+    <div class="rev-grid">
+      <article class="rev reveal"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span>
+        <q>Le kit Ultimate a équipé toute ma classe de terminale SI. Mallette robuste, composants fiables et les tutoriels inclus font gagner un temps précieux.</q>
+        <div class="rev-who"><span class="avatar" style="background:var(--blue)">LM</span><div><b>Léa M.</b><small>Professeure sciences de l'ingénieur</small></div></div></article>
+      <article class="rev reveal"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span>
+        <q>Commande passée un mardi soir, reçue le jeudi matin. La trousse 115 embouts est d'une qualité irréelle pour le prix. Mon atelier ne jure plus que par OhmLab.</q>
+        <div class="rev-who"><span class="avatar" style="background:var(--orange)">KB</span><div><b>Karim B.</b><small>Maker indépendant</small></div></div></article>
+      <article class="rev reveal"><span class="stars"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></span>
+        <q>Le support m'a aidée à déboguer mon projet de capteur ultrason en moins d'une heure, avec un schéma corrigé. Ce niveau de service, c'est rare.</q>
+        <div class="rev-who"><span class="avatar" style="background:var(--blue-deep)">SR</span><div><b>Sophie R.</b><small>Étudiante en ingénierie</small></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="badge-label" style="background:var(--orange-100);color:var(--orange)"><svg class="ic sm"><use href="#i-headset"/></svg> FAQ</span>
+      <h2>Questions <span class="grad">fréquentes</span></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq reveal"><button class="faq-q">Quels sont les délais de livraison réels ?<svg class="ic"><use href="#i-plus"/></svg></button><div class="faq-a"><p>Les commandes passées avant 15 h partent le jour même. Comptez 24 à 48 h en France métropolitaine, 3 à 5 jours en Europe, avec un suivi envoyé par mail dès la prise en charge du colis.</p></div></div>
+      <div class="faq reveal"><button class="faq-q">Les cartes sont-elles officielles ou compatibles ?<svg class="ic"><use href="#i-plus"/></svg></button><div class="faq-a"><p>Les deux, et c'est indiqué clairement sur chaque fiche produit. Nos compatibles utilisent exactement le même microcontrôleur et le même chargeur d'amorçage : ils fonctionnent avec l'IDE Arduino officiel sans aucune manipulation.</p></div></div>
+      <div class="faq reveal"><button class="faq-q">Que couvre la garantie 2 ans ?<svg class="ic"><use href="#i-plus"/></svg></button><div class="faq-a"><p>Tout défaut de fonctionnement hors dommage physique : composant mort à la réception, pin défectueuse, écran HS. Une photo suffit, on renvoie la pièce sans demander le retour du produit défectueux.</p></div></div>
+      <div class="faq reveal"><button class="faq-q">Puis-je obtenir une facture pour mon école ou mon entreprise ?<svg class="ic"><use href="#i-plus"/></svg></button><div class="faq-a"><p>Oui. Créez un compte PRO au moment du checkout : la facture avec TVA et bon de commande sont générés automatiquement, et les tarifs dégressifs s'appliquent dès 10 unités d'un même article.</p></div></div>
+      <div class="faq reveal"><button class="faq-q">Comment fonctionnent les deals flash ?<svg class="ic"><use href="#i-plus"/></svg></button><div class="faq-a"><p>Chaque lundi à 9 h, six références passent en prix cassé jusqu'à épuisement du stock alloué. La barre de stock sur chaque deal est mise à jour en temps réel : à 0 %, l'offre disparaît.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIVRE ================= -->
+<section class="livre" id="livre">
+  <div class="container">
+    <div class="livre-inner reveal">
+
+      <!-- Colonne gauche : visuel livre -->
+      <div class="livre-vis">
+        <div class="livre-book">
+          <div class="livre-cover">
+            <div class="lc-top">
+              <span class="lc-badge">Édition 2026</span>
+              <span class="lc-chip">Ultime</span>
+            </div>
+            <div class="lc-title">
+              <span class="lc-pre">ARDUINO</span>
+              <span class="lc-main">DE ZÉRO<br>À PRO</span>
+            </div>
+            <div class="lc-topics">
+              <span>Électronique</span><span>C/C++</span><span>Capteurs</span>
+              <span>IoT</span><span>Wokwi</span><span>Robotique</span>
+            </div>
+            <div class="lc-author">— Guide le plus complet · Nyx</div>
+          </div>
+          <div class="livre-spine"></div>
+          <div class="livre-shadow"></div>
+        </div>
+        <!-- Badges flottants -->
+        <div class="livre-pill lp1 floaty f2"> 31 pages</div>
+        <div class="livre-pill lp2 floaty f4"> 20 chapitres</div>
+        <div class="livre-pill lp3 floaty f3"> 19 exercices</div>
+      </div>
+
+      <!-- Colonne droite : infos -->
+      <div class="livre-info">
+        <span class="badge-label" style="background:rgba(255,106,0,.12);color:var(--orange);border:1.5px solid rgba(255,106,0,.3)">
+          <svg class="ic sm"><use href="#i-chip"/></svg> E-book exclusif
+        </span>
+        <h2 class="livre-h2">Apprendre Arduino<br><span class="grad">de Zéro à Pro</span></h2>
+        <p class="livre-desc">Le guide le plus complet jamais créé : histoire, matériel, électronique, programmation C/C++, capteurs, actionneurs, IoT, cloud, simulation Wokwi et robotique. Tout ce qu'il faut pour maîtriser Arduino de A à Z.</p>
+
+        <ul class="livre-feats">
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> 20 chapitres · du câblage au cloud</li>
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> 7 simulations Wokwi pas-à-pas (sans matériel)</li>
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> 19 exercices progressifs (Débutant → Expert)</li>
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> Comparatif de toutes les cartes Arduino 2026</li>
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> Projets complets : robot, station météo, data logger</li>
+          <li><svg class="ic sm" style="color:var(--orange)"><use href="#i-check"/></svg> Format PDF · téléchargement immédiat</li>
+        </ul>
+
+        <div class="livre-prix">
+          <div class="lp-price">
+            <span class="lp-now">2 950 FCFA</span>
+            <span class="lp-old">5 900 FCFA</span>
+            <span class="lp-badge">-50 %</span>
+          </div>
+          <p class="lp-sub">Accès à vie · Mises à jour incluses</p>
+        </div>
+
+        <div class="livre-ctas">
+          <a href="#" class="btn btn-orange livre-btn-buy" onclick="return false">
+            Obtenir le guide
+            <svg class="ic sm"><use href="#i-arrow"/></svg>
+          </a>
+          <a href="#" class="btn btn-ghost livre-btn-preview">
+            Aperçu gratuit
+            <svg class="ic sm"><use href="#i-play"/></svg>
+          </a>
+        </div>
+
+        <div class="livre-stars">
+          <span></span>
+          <span>4,9 / 5 · 127 makers</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="news" id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="news-card reveal">
+      <div>
+        <h3>Rejoignez le labo</h3>
+        <p>Un projet tutoriel, une promo exclusive et zéro spam, une fois par mois dans votre boîte mail.</p>
+        <form class="news-form" id="news-form"><input type="email" required placeholder="votre@email.fr" aria-label="Adresse e-mail"><button class="btn btn-orange" type="submit">S'inscrire <svg class="ic sm"><use href="#i-mail"/></svg></button></form>
+        <div class="news-ok" id="news-ok"><svg class="ic"><use href="#i-check"/></svg> Inscription confirmée, bienvenue au labo !</div>
+      </div>
+      <div class="news-ill" aria-hidden="true">
+        <figure class="hv-card"><div class="ph-wrap"><img data-img="kit" alt=""><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-kit"/></svg></div></figure>
+        <figure class="hv-card"><div class="ph-wrap"><img data-img="jumpers" alt="Jumpers assortis"><svg class="ph-fb" viewBox="0 0 220 150"><use href="#ill-jumpers"/></svg></div></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODAL APERÇU LIVRE ================= -->
+<div class="ap-overlay" id="ap-overlay" role="dialog" aria-modal="true" aria-label="Aperçu du guide Arduino">
+  <div class="ap-modal">
+
+    <!-- Header modal -->
+    <div class="ap-head">
+      <div class="ap-head-left">
+        <svg class="ic sm" style="color:var(--blue)"><use href="#i-book"/></svg>
+        <span>Arduino de Zéro à Pro — <strong>Aperçu gratuit</strong></span>
+      </div>
+      <div class="ap-head-right">
+        <span class="ap-pages-info" id="ap-pages-info">Page <b id="ap-cur">1</b> / <b id="ap-total">3</b></span>
+        <button class="icon-btn" id="ap-close" aria-label="Fermer l'aperçu">
+          <svg class="ic"><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Livre rendu -->
+    <div class="ap-body">
+      <div class="ap-book-wrap">
+
+        <!-- PAGE 1 — Couverture -->
+        <div class="ap-page ap-page-cover active" id="apg-1">
+          <div class="apg-cover">
+            <div class="apg-cov-top">
+              <span class="apg-badge">Édition 2026 · Version Ultime</span>
+            </div>
+            <div class="apg-cov-title">
+              <p class="apg-cov-pre">ARDUINO ULTIME</p>
+              <h1 class="apg-cov-h1">De Débutant<br>à Professionnel</h1>
+              <p class="apg-cov-sub">Le guide le plus complet jamais créé</p>
+            </div>
+            <div class="apg-cov-topics">
+              <span>Histoire</span><span>Matériel</span><span>Électronique</span>
+              <span>Programmation C/C++</span><span>Capteurs & Actionneurs</span>
+              <span>Affichages</span><span>Communication</span><span>Interruptions</span>
+              <span>Timers</span><span>IoT & Cloud</span><span>Robotique</span>
+              <span>Simulations Wokwi</span><span>Exercices</span><span>Projets</span>
+            </div>
+            <div class="apg-cov-footer">
+              Tout ce qu'il faut pour maîtriser Arduino de A à Z
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE 2 — Table des matières -->
+        <div class="ap-page" id="apg-2">
+          <div class="apg-inner">
+            <div class="apg-chapter-label">Table des matières</div>
+            <h2 class="apg-h2">20 chapitres pour maîtriser Arduino</h2>
+            <div class="apg-toc">
+              <div class="apg-toc-col">
+                <div class="apg-toc-item"><span class="apg-toc-n">01</span><span>Introduction & Histoire d'Arduino</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">02</span><span>L'écosystème matériel Arduino</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">03</span><span>Installation de l'IDE et premiers pas</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">04</span><span>Bases d'électronique pour Arduino</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">05</span><span>Programmation Arduino (C/C++)</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">06</span><span>Entrées / Sorties numériques & analogiques</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">07</span><span>Capteurs : théorie et pratique</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">08</span><span>Actionneurs : moteurs, servos, relais</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">09</span><span>Affichages (LED, LCD, OLED, TFT)</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">10</span><span>Communication : Serial, I2C, SPI, UART</span></div>
+              </div>
+              <div class="apg-toc-col">
+                <div class="apg-toc-item"><span class="apg-toc-n">11</span><span>Simulation avec Wokwi</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">12</span><span>Interruptions, Timers et gestion du temps</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">13</span><span>Mémoire : EEPROM, Flash, SRAM</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">14</span><span>Low-power et projets à piles</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">15</span><span>Arduino et IoT / Cloud</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">16</span><span>Robotique et projets avancés</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">17</span><span>Debugging et bonnes pratiques</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">18</span><span>Bibliothèque de projets complets</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">19</span><span>Exercices progressifs (Débutant → Pro)</span></div>
+                <div class="apg-toc-item"><span class="apg-toc-n">20</span><span>Annexes : pinouts, tables, ressources</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE 3 — Chapitre 1 -->
+        <div class="ap-page" id="apg-3">
+          <div class="apg-inner">
+            <div class="apg-chapter-label">Chapitre 1 · Extrait</div>
+            <h2 class="apg-h2">Introduction & Histoire d'Arduino</h2>
+
+            <h3 class="apg-h3">1.1 Qu'est-ce qu'Arduino ?</h3>
+            <p class="apg-p">Arduino est une plateforme de prototypage électronique <strong>open-source</strong> basée sur du matériel et un logiciel faciles d'utilisation. Elle permet de créer des objets interactifs capables de détecter et de contrôler le monde physique.</p>
+
+            <div class="apg-def">
+              <span class="apg-def-label">Définition</span>
+              Un <strong>microcontrôleur</strong> est un circuit intégré contenant un processeur, de la mémoire et des périphériques d'entrée/sortie. Contrairement à un ordinateur classique, il est conçu pour exécuter une seule tâche de façon répétitive et fiable.
+            </div>
+
+            <h3 class="apg-h3">1.2 Histoire courte</h3>
+            <p class="apg-p">Arduino est né en <strong>2005 à Ivrea (Italie)</strong> au sein de l'Interaction Design Institute. Massimo Banzi et son équipe ont créé un outil accessible aux étudiants en design qui n'étaient pas ingénieurs en électronique.</p>
+
+            <h3 class="apg-h3">1.3 Pourquoi Arduino en 2026 ?</h3>
+            <ul class="apg-ul">
+              <li>Courbe d'apprentissage ultra-douce (du clignotement d'une LED aux robots et à l'IoT)</li>
+              <li>Matériel abordable — accessible partout en Afrique</li>
+              <li>Écosystème gigantesque : bibliothèques, shields, clones, documentation</li>
+              <li>Compatible avec des plateformes modernes (ESP32, RP2040, SAMD…)</li>
+              <li>Utilisé en éducation, art, robotique, agriculture, domotique</li>
+            </ul>
+
+            <div class="apg-blur-zone">
+              <p class="apg-p">À la fin de ce guide vous serez capable de : choisir la bonne carte, câbler n'importe quel capteur, écrire du code propre et optimisé, utiliser interruptions et timers, communiquer en I2C/SPI, connecter vos projets au cloud…</p>
+              <div class="apg-blur-overlay">
+                <svg class="ic" style="width:36px;height:36px;color:var(--blue)"><use href="#i-lock"/></svg>
+                <p><strong>Accédez aux 28 pages restantes</strong></p>
+                <a href="#" class="btn btn-orange" onclick="document.getElementById('ap-overlay').classList.remove('open');document.querySelector('.livre-btn-buy').scrollIntoView({behavior:'smooth'});return false">
+                  Obtenir le guide complet — 2 950 FCFA
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- .ap-book-wrap -->
+    </div><!-- .ap-body -->
+
+    <!-- Footer navigation -->
+    <div class="ap-foot">
+      <div class="ap-dots" id="ap-dots">
+        <button class="ap-dot active" data-page="1"></button>
+        <button class="ap-dot" data-page="2"></button>
+        <button class="ap-dot" data-page="3"></button>
+      </div>
+      <div class="ap-nav">
+        <button class="btn ap-btn-nav" id="ap-prev" disabled>
+          <svg class="ic sm"><use href="#i-left"/></svg> Précédent
+        </button>
+        <button class="btn btn-orange ap-btn-nav" id="ap-next">
+          Suivant <svg class="ic sm"><use href="#i-arrow"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div><!-- .ap-modal -->
+</div><!-- .ap-overlay -->
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="#" class="logo"><span class="logo-mark"><svg class="ic"><use href="#i-cpu"/></svg></span> Ohm<em>Lab</em></a>
+        <p>La boutique atelier des makers, écoles et ingénieurs : électronique sélectionnée, documentée et garantie depuis 2016.</p>
+        <div class="socials"><a href="#" aria-label="X"><svg class="ic"><use href="#i-x-social"/></svg></a><a href="#" aria-label="YouTube"><svg class="ic"><use href="#i-yt"/></svg></a><a href="#" aria-label="Instagram"><svg class="ic"><use href="#i-ig"/></svg></a></div>
+      </div>
+      <div><h5>Boutique</h5><ul><li><a href="#univers">Univers Arduino</a></li><li><a href="#univers">Composants</a></li><li><a href="#univers">Outillage</a></li><li><a href="#zones">Kits complets</a></li><li><a href="#deals">Deals flash</a></li></ul></div>
+      <div><h5>Aide</h5><ul><li><a href="#faq">Suivi de commande</a></li><li><a href="#faq">Livraison & retours</a></li><li><a href="#faq">Garantie 2 ans</a></li><li><a href="#projets">Tutoriels du labo</a></li><li><a href="#contact">Nous contacter</a></li></ul></div>
+      <div><h5>Entreprise</h5><ul><li><a href="#">À propos d'OhmLab</a></li><li><a href="#zones">Comptes PRO & éducation</a></li><li><a href="#">Programme partenaire</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li></ul></div>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 OhmLab — Tous droits réservés. Conçu et soudé en France.</span>
+      <div class="pays"><span><svg class="ic"><use href="#i-lock"/></svg> SSL</span><span><svg class="ic"><use href="#i-card"/></svg> CB</span><span><svg class="ic"><use href="#i-card"/></svg> Visa</span><span><svg class="ic"><use href="#i-card"/></svg> Mastercard</span><span><svg class="ic"><use href="#i-check"/></svg> PayPal</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= PANIER ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart" id="cart" aria-label="Panier">
+  <div class="cart-head"><h4><svg class="ic"><use href="#i-cart"/></svg> Mon panier</h4><button class="icon-btn" id="cart-close" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="cart-list" id="cart-list"></div>
+  <div class="cart-foot">
+    <div class="ct-row"><span>Sous-total</span><span id="ct-sub">0 FCFA</span></div>
+    <div class="ct-row"><span>Livraison</span><span id="ct-ship">—</span></div>
+    <div class="ct-row total"><span>Total</span><span id="ct-total">0 FCFA</span></div>
+    <button class="btn btn-primary" id="checkout">Passer commande <svg class="ic sm"><use href="#i-arrow"/></svg></button>
+    <span class="cart-note"><svg class="ic"><use href="#i-lock"/></svg> Paiement 100 % sécurisé · Garantie 2 ans</span>
+  </div>
+</aside>
+<div class="toasts" id="toasts"></div>
+<button class="to-top" id="to-top" aria-label="Retour en haut"><svg class="ic"><use href="#i-up"/></svg></button>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const money = n => Math.round(n * 655.957).toLocaleString('fr-FR') + ' FCFA';
+
+/* ===== CHARGEUR D'IMAGES INTELLIGENT v2 — ZÉRO SUPERPOSITION ===== */
+const IMG_KEYS = {
+  uno:     ['assets/arduino-uno.jpg','assets/arduino-uno.jpg','assets/arduino-uno.jpeg','assets/arduino-uno.webp','assets/uno.jpg','assets/uno.jpg','assets/carte-uno.jpg','img/arduino-uno.png','images/arduino-uno.png','arduino-uno.png','arduino-uno.jpg'],
+  soudure: ['assets/kit-soudure.jpg','assets/kit-soudure.jpg','assets/kit-soudure.jpeg','assets/kit-soudure.webp','assets/trousse-soudure.jpg','assets/station-soudure.jpg','img/kit-soudure.png','images/kit-soudure.png','kit-soudure.png','kit-soudure.jpg'],
+  kit:     ['assets/kit-arduino.jpg','assets/kit-arduino.jpg','assets/kit-arduino.jpeg','assets/kit-arduino.webp','assets/kit-uno.jpg','assets/mallette-arduino.jpg','img/kit-arduino.png','images/kit-arduino.png','kit-arduino.png','kit-arduino.jpg'],
+  relay:   ['assets/relay.jpg','assets/relay.jpg','assets/relay.webp'],
+  hcsr04:  ['assets/hcsr04.jpg','assets/hcsr04.jpg','assets/hcsr04.webp'],
+  rfid:    ['assets/rfid.jpg','assets/rfid.jpg','assets/rfid.webp'],
+  lcd:     ['assets/lcd.jpg','assets/lcd.jpg','assets/lcd.webp'],
+  servo:   ['assets/servo.jpg','assets/servo.jpg','assets/servo.webp'],
+  bread:   ['assets/bread.jpg','assets/bread.jpg','assets/bread.webp'],
+  leds:    ['assets/leds.jpg','assets/leds.jpg','assets/leds.webp'],
+  res:     ['assets/res.jpg','assets/res.jpg','assets/res.webp'],
+  fan:     ['assets/fan.jpg','assets/fan.jpg','assets/fan.webp'],
+  embouts: ['assets/embouts.jpg','assets/embouts.jpg','assets/embouts.webp'],
+  jumpers: ['assets/jumpers.jpg','assets/jumpers.jpg','assets/jumpers.webp','assets/bread.jpg']
+};
+const RESOLVED = {};
+const probe = src => new Promise(res => { const i = new Image(); i.onload = () => res(src); i.onerror = () => res(null); i.src = src; });
+
+/* Attache une image : le SVG fallback est détruit dès que la photo s'affiche */
+function bindImg(img, src) {
+  img.src = src;
+  img.addEventListener('load', () => {
+    img.classList.add('loaded');
+    const wrap = img.closest('.ph-wrap');
+    const fb = wrap && wrap.querySelector('.ph-fb');
+    if (fb) fb.remove();               // SVG disparaît définitivement
+  }, { once: true });
+  img.addEventListener('error', () => {
+    img.remove();                      // photo HS : l'<img> saute, le SVG reste seul
+  }, { once: true });
+}
+
+(async () => {
+  for (const [key, list] of Object.entries(IMG_KEYS)) {
+    let found = null;
+    for (const src of list) { found = await probe(src); if (found) break; }
+    const imgs = document.querySelectorAll(`[data-img="${key}"]`);
+    if (found) {
+      RESOLVED[key] = found;
+      imgs.forEach(img => bindImg(img, found));
+      console.log(`%c[OhmLab] image "${key}" → ${found} (SVG retiré après chargement)`, 'color:#0A6CFF;font-weight:bold');
+    } else {
+      imgs.forEach(img => img.remove());
+      console.warn(`[OhmLab] image "${key}" introuvable → illustration SVG conservée seule.`);
+    }
+  }
+  renderCart();
+})();
+
+
+/* ===== MODAL APERÇU LIVRE ===== */
+(function(){
+  const overlay  = document.getElementById('ap-overlay');
+  const btnOpen  = document.querySelector('.livre-btn-preview');
+  const btnClose = document.getElementById('ap-close');
+  const btnPrev  = document.getElementById('ap-prev');
+  const btnNext  = document.getElementById('ap-next');
+  const curEl    = document.getElementById('ap-cur');
+  const dots     = document.querySelectorAll('.ap-dot');
+  const pages    = document.querySelectorAll('.ap-page');
+  const TOTAL    = pages.length;
+  let cur = 1;
+
+  function goTo(n, dir){
+    if(n < 1 || n > TOTAL) return;
+    pages[cur-1].classList.remove('active','anim-left');
+    cur = n;
+    const pg = pages[cur-1];
+    pg.classList.remove('anim-left');
+    void pg.offsetWidth; // reflow
+    if(dir === 'prev') pg.classList.add('anim-left');
+    pg.classList.add('active');
+    curEl.textContent = cur;
+    dots.forEach((d,i) => d.classList.toggle('active', i === cur-1));
+    btnPrev.disabled = cur === 1;
+    btnNext.textContent = cur === TOTAL ? 'Fermer' : 'Suivant';
+    btnNext.innerHTML = cur === TOTAL
+      ? 'Fermer <svg class="ic sm"><use href="#i-x"/></svg>'
+      : 'Suivant <svg class="ic sm"><use href="#i-arrow"/></svg>';
+    // scroll haut de page dans la modal
+    document.querySelector('.ap-body').scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function open(){
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    goTo(1);
+  }
+  function close(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  btnOpen && btnOpen.addEventListener('click', e => { e.preventDefault(); open(); });
+  btnClose.addEventListener('click', close);
+  overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+
+  btnPrev.addEventListener('click', () => goTo(cur-1, 'prev'));
+  btnNext.addEventListener('click', () => {
+    if(cur === TOTAL){ close(); return; }
+    goTo(cur+1, 'next');
+  });
+
+  dots.forEach(d => d.addEventListener('click', () => {
+    const n = parseInt(d.dataset.page);
+    goTo(n, n < cur ? 'prev' : 'next');
+  }));
+
+  // Swipe mobile
+  let touchX = 0;
+  const body = document.querySelector('.ap-body');
+  body.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
+  body.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if(Math.abs(dx) > 50){
+      dx < 0 ? goTo(cur+1,'next') : goTo(cur-1,'prev');
+    }
+  }, {passive:true});
+})();
+
+/* ===== PRELOADER ===== */
+const hideLoader = () => $('#loader').classList.add('done');
+addEventListener('load', () => setTimeout(hideLoader, 350));
+setTimeout(hideLoader, 2600);
+
+/* ===== SCROLL : progress, nav, to-top ===== */
+const nav = $('#nav'), prog = $('#progress');
+addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 10);
+  $('#to-top').classList.toggle('show', scrollY > 600);
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, { passive: true });
+$('#to-top').addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ===== MENU MOBILE ===== */
+const mm = $('#mobile-menu');
+$('#burger').addEventListener('click', e => { e.stopPropagation(); mm.classList.toggle('open'); });
+$$('#mobile-menu a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+document.addEventListener('click', e => { if (!mm.contains(e.target) && !e.target.closest('#burger')) mm.classList.remove('open'); });
+
+/* ===== REVEAL ===== */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+$$('.reveal').forEach(el => io.observe(el));
+
+/* ===== STOCK BARS (deals) ===== */
+const ioStock = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.width = e.target.dataset.w + '%'; ioStock.unobserve(e.target); } }), { threshold: .4 });
+$$('.stock i').forEach(el => ioStock.observe(el));
+
+/* ===== COMPTEURS ===== */
+const ioNum = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, target = +el.dataset.target, t0 = performance.now();
+  const step = t => { const p = Math.min((t - t0) / 1400, 1); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('fr-FR'); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step); ioNum.unobserve(el);
+}), { threshold: .6 });
+$$('.num').forEach(el => ioNum.observe(el));
+
+/* ===== SCROLL-SPY NAV ===== */
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) $$('.nav-links a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+['univers','zones','deals','produits','projets','faq'].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
+/* ===== MOT TOURNANT (machine à écrire) ===== */
+(() => {
+  const words = ['Arduino', 'capteurs', 'robot', 'objet connecté', 'atelier soudure', 'station météo'];
+  const el = $('#rotoword'); let w = 0, i = 0, del = false;
+  (function tick() {
+    const word = words[w];
+    el.textContent = word.slice(0, i);
+    if (!del && i < word.length) { i++; setTimeout(tick, 85); }
+    else if (!del) { del = true; setTimeout(tick, 1500); }
+    else if (i > 0) { i--; setTimeout(tick, 40); }
+    else { del = false; w = (w + 1) % words.length; setTimeout(tick, 300); }
+  })();
+})();
+
+/* ===== SPOTLIGHT HERO ===== */
+const hero = $('.hero');
+hero.addEventListener('mousemove', e => {
+  const r = hero.getBoundingClientRect();
+  hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+});
+
+/* ===== PARALLAXE HERO ===== */
+const vis = $('#hero-vis');
+if (vis && matchMedia('(pointer:fine)').matches) {
+  addEventListener('mousemove', e => {
+    const x = (e.clientX / innerWidth - .5), y = (e.clientY / innerHeight - .5);
+    vis.querySelectorAll('[data-depth]').forEach(l => { l.style.translate = `${-x * +l.dataset.depth}px ${-y * +l.dataset.depth}px`; });
+  });
+}
+
+/* ===== TILT 3D CARTES ===== */
+if (matchMedia('(pointer:fine)').matches) {
+  $$('.p-card, .deal, .proj').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(800px) rotateY(${px * 7}deg) rotateX(${-py * 7}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+}
+
+/* ===== CARROUSEL DEALS ===== */
+const track = $('#deal-track');
+$('#deal-next').addEventListener('click', () => track.scrollBy({ left: 300, behavior: 'smooth' }));
+$('#deal-prev').addEventListener('click', () => track.scrollBy({ left: -300, behavior: 'smooth' }));
+
+/* ===== FAQ ACCORDÉON ===== */
+$$('.faq-q').forEach(q => q.addEventListener('click', () => {
+  const item = q.parentElement, panel = q.nextElementSibling, open = item.classList.contains('open');
+  $$('.faq').forEach(f => { f.classList.remove('open'); f.querySelector('.faq-a').style.maxHeight = null; });
+  if (!open) { item.classList.add('open'); panel.style.maxHeight = panel.scrollHeight + 'px'; }
+}));
+
+/* ===== FILTRES + RECHERCHE ===== */
+let currentFilter = 'tous', currentQuery = '';
+const cards = $$('#p-grid .p-card');
+function filterProducts() {
+  cards.forEach(c => {
+    const ok = (currentFilter === 'tous' || c.dataset.cat === currentFilter) && c.dataset.name.toLowerCase().includes(currentQuery);
+    c.classList.toggle('hide', !ok);
+    if (ok) { c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+  });
+}
+$$('#tabs .tab').forEach(t => t.addEventListener('click', () => { $$('#tabs .tab').forEach(x => x.classList.remove('active')); t.classList.add('active'); currentFilter = t.dataset.filter; filterProducts(); }));
+$$('[data-goto]').forEach(l => l.addEventListener('click', () => { const tab = $(`#tabs .tab[data-filter="${l.dataset.goto}"]`); if (tab) tab.click(); }));
+['#search', '#search-m'].forEach(sel => $(sel).addEventListener('input', e => {
+  currentQuery = e.target.value.trim().toLowerCase();
+  const other = sel === '#search' ? '#search-m' : '#search';
+  $(other).value = e.target.value;
+  filterProducts();
+}));
+
+/* ===== FAVORIS ===== */
+let wishCount = 0;
+$$('.p-wish').forEach(w => w.addEventListener('click', () => {
+  w.classList.toggle('active');
+  wishCount += w.classList.contains('active') ? 1 : -1;
+  const b = $('#wish-count');
+  b.textContent = wishCount; b.classList.toggle('show', wishCount > 0);
+  toast(w.classList.contains('active') ? 'Ajouté aux favoris' : 'Retiré des favoris');
+}));
+$('#wish-btn').addEventListener('click', () => toast('Vos favoris : ' + wishCount + ' article(s)'));
+
+/* ===== PANIER ===== */
+const cart = new Map();
+const cartEl = $('#cart'), overlay = $('#overlay');
+const openCart = o => { cartEl.classList.toggle('open', o); overlay.classList.toggle('show', o); };
+$$('[data-cart-open]').forEach(b => b.addEventListener('click', () => openCart(true)));
+$('#cart-close').addEventListener('click', () => openCart(false));
+overlay.addEventListener('click', () => openCart(false));
+addEventListener('keydown', e => { if (e.key === 'Escape') { openCart(false); mm.classList.remove('open'); } });
+function thumbHTML(it) {
+  return (it.imgKey && RESOLVED[it.imgKey])
+    ? `<img src="${RESOLVED[it.imgKey]}" alt="">`
+    : `<svg viewBox="0 0 220 150" style="width:100%"><use href="#${it.ill}"/></svg>`;
+}
+function renderCart() {
+  const list = $('#cart-list');
+  let count = 0, sub = 0;
+  if (!cart.size) {
+    list.innerHTML = `<div class="cart-empty"><svg class="ic"><use href="#i-cart"/></svg><b>Votre panier est vide</b><small>Ajoutez des composants pour démarrer un projet.</small></div>`;
+  } else {
+    list.innerHTML = [...cart.entries()].map(([id, it]) => {
+      count += it.qty; sub += it.qty * it.price;
+      return `<div class="ci"><span class="ci-thumb">${thumbHTML(it)}</span>
+        <div class="ci-info"><b>${it.name}</b><small>${money(it.price)} / unité</small></div>
+        <div class="qty"><button data-q="dec" data-id="${id}" aria-label="Moins"><svg class="ic"><use href="#i-minus"/></svg></button><span>${it.qty}</span><button data-q="inc" data-id="${id}" aria-label="Plus"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+        <button class="ci-del" data-q="rem" data-id="${id}" aria-label="Retirer"><svg class="ic"><use href="#i-trash"/></svg></button></div>`;
+    }).join('');
+  }
+  const ship = sub === 0 ? 0 : (sub >= 49 ? 0 : 4.90);
+  $('#ct-sub').textContent = money(sub);
+  $('#ct-ship').textContent = sub === 0 ? '—' : (ship === 0 ? 'Offerte' : money(ship));
+  $('#ct-total').textContent = money(sub + ship);
+  const b = $('#cart-count');
+  b.textContent = count; b.classList.toggle('show', count > 0);
+  b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+}
+$$('[data-add]').forEach(btn => btn.addEventListener('click', () => {
+  const d = btn.dataset;
+  const it = cart.get(d.id) || { name: d.name, price: +d.price, ill: d.ill, imgKey: d.img || '', qty: 0 };
+  it.qty++; cart.set(d.id, it);
+  renderCart(); toast(d.name + ' ajouté au panier');
+}));
+$('#cart-list').addEventListener('click', e => {
+  const b = e.target.closest('[data-q]'); if (!b) return;
+  const it = cart.get(b.dataset.id); if (!it) return;
+  if (b.dataset.q === 'inc') it.qty++;
+  if (b.dataset.q === 'dec') it.qty--;
+  if (b.dataset.q === 'rem' || it.qty <= 0) cart.delete(b.dataset.id);
+  renderCart();
+});
+$('#checkout').addEventListener('click', () => cart.size ? toast('Redirection vers le paiement sécurisé…') : toast('Votre panier est vide'));
+renderCart();
+
+/* ===== TOASTS ===== */
+function toast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<svg class="ic"><use href="#i-check"/></svg> ${msg}`;
+  $('#toasts').appendChild(t);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 350); }, 2600);
+}
+
+/* ===== COMPTE À REBOURS ===== */
+const end = Date.now() + (3 * 86400 + 11 * 3600 + 42 * 60 + 30) * 1000;
+const pad = n => String(n).padStart(2, '0');
+setInterval(() => {
+  let d = Math.max(0, end - Date.now()) / 1000 | 0;
+  $('#cd-d').textContent = pad(d / 86400 | 0);
+  $('#cd-h').textContent = pad(d % 86400 / 3600 | 0);
+  $('#cd-m').textContent = pad(d % 3600 / 60 | 0);
+  $('#cd-s').textContent = pad(d % 60);
+}, 1000);
+
+/* ===== NEWSLETTER ===== */
+$('#news-form').addEventListener('submit', e => {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  $('#news-ok').style.display = 'flex';
+  toast('Inscription à la newsletter confirmée');
+});
+</script>
+</body>
+</html>
